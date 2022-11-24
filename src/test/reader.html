@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #303030;
+        }
+
+        .impress-enabled .step {
+            transition: opacity .5s;
+            opacity: 0;
+        }
+
+        .impress-enabled .step.active {
+            opacity: 1.0;
+        }
+
+        .impress-enabled div#impress-toolbar {
+            position: fixed;
+            right: 50%;
+            bottom: 1px;
+            opacity: 0.6;
+        }
+
+        .impress-enabled div#impress-toolbar > span {
+            margin-right: 10px;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <div id="like_button_container" style="z-index: 1;" ></div>
+    <div className="App">
+        <div id="impress-toolbar" position= "absolute" style="z-index: 0;"></div>
+
+        <div id="impress" data-transition-duration="250" style="z-index:-1;">
+  
+        <div id="overview" class="step active" data-x="0" data-y="0" z-index="0">
+            <img src="images/primera.png" ></img>
+        </div>
+  
+        <div id="step-1" class="step future"   data-x="-0" data-y="-250" data-scale="0.5" >
+            <div  style="width:1500px; height:1000px; ;border:3000px solid #303030; opacity: 0.95"></div>
+        </div>
+
+        <div id="step-2" class="step future"   data-x="178" data-y="121" data-scale="0.25" >
+             <div  style="width:1260px; height:950px; ;border:3000px solid #303030; opacity: 0.95"></div>
+        </div>
+
+        <div id="step-3" class="step future"   data-x="-168" data-y="121" data-scale="0.5" >
+             <div  style="width:630px; height:470px; ;border:3000px solid #303030; opacity: 0.95"></div>
+        </div>
+
+        <div id="step-4" class="step future"   data-x="178" data-y="370" data-scale="0.5" >
+            <div  style="width:630px; height:470px; ;border:3000px solid #303030; opacity: 0.95"></div>
+        </div>
+
+        <div id="step-5" class="step stop"   data-x="-168" data-y="370" data-scale="0.5" >
+             <div  style="width:630px; height:470px; ;border:3000px solid #303030; opacity: 0.95"></div>
+        </div>
+    </div>
+
+    <script src="js/impress.js"></script>
+    <script>
+        impress().init();
+    </script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+<!-- Load our React component. -->
+<script src="like_button.js"></script>
+</body>
