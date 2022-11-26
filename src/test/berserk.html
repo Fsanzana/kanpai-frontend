@@ -2,7 +2,6 @@
 <html>
   <head>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
-
     <style>
       body {
         background-color: #303030;
@@ -120,6 +119,7 @@
 
   <script type="text/javascript">
     var swtichBoolean = false;
+    var steps;
 
     function overviewSwitch() {
       if (swtichBoolean) {
@@ -127,6 +127,19 @@
       } else {
         return false;
       }
+    }
+
+    function stepState() {
+      return window.location.href.split("/").pop();
+    }
+
+    function setSteps() {
+      steps = parseInt(
+        (document.getElementById("impress").getElementsByTagName("*").length -
+          1) /
+          2 -
+          1
+      );
     }
 
     function docReady(fn) {
@@ -159,7 +172,7 @@
               document.getElementById("impress").style.zIndex = 1;
               document.getElementById("impress-toolbar").style.zIndex = 0;
 
-              for (var i = 5; i >= 0; i--) {
+              for (var i = steps; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "0px";
@@ -169,7 +182,7 @@
               document.getElementById("impress").style.zIndex = 0;
               document.getElementById("impress-toolbar").style.zIndex = 1;
 
-              for (var i = 5; i >= 0; i--) {
+              for (var i = steps; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "3000px solid #303030";
@@ -188,27 +201,27 @@
     });
   </script>
 
-  <body>
+  <body onload="setSteps()">
     <div id="impress-toolbar" style="position: absolute; z-index: 1">
-      <button id="overviewSwitch" onclick="overviewSwitch()">
+      <button id="overviewSwitch" onclick="stepState()">
         <img id="overviewIcon" src="../assets/overview.png" height="30rem" />
       </button>
     </div>
 
-    <div id="impress" data-transition-duration="250" style="z-index: 0">
+    <div id="impress" data-transition-duration="250">
       <div
         id="step-1"
         class="step future"
-        data-x="0"
-        data-y="-250"
+        data-x="-0"
+        data-y="-160"
         data-z="1"
-        data-scale="0.5"
+        data-scale="0.69"
       >
         <div
           id="step-1-child"
           style="
-            width: 1500px;
-            height: 1000px;
+            width: 1100px;
+            height: 975px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -218,16 +231,16 @@
       <div
         id="step-2"
         class="step future"
-        data-x="178"
-        data-y="121"
+        data-x="250"
+        data-y="330"
         data-z="2"
-        data-scale="0.25"
+        data-scale="0.33"
       >
         <div
           id="step-2-child"
           style="
-            width: 1260px;
-            height: 950px;
+            width: 600px;
+            height: 1030px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -237,16 +250,16 @@
       <div
         id="step-3"
         class="step future"
-        data-x="-168"
-        data-y="121"
+        data-x="5"
+        data-y="330"
         data-z="3"
-        data-scale="0.5"
+        data-scale="0.33"
       >
         <div
           id="step-3-child"
           style="
-            width: 630px;
-            height: 470px;
+            width: 860px;
+            height: 1030px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -256,16 +269,16 @@
       <div
         id="step-4"
         class="step future"
-        data-x="178"
-        data-y="370"
+        data-x="-205"
+        data-y="245"
         data-z="4"
-        data-scale="0.5"
+        data-scale="0.17"
       >
         <div
           id="step-4-child"
           style="
-            width: 630px;
-            height: 470px;
+            width: 800px;
+            height: 1020px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -275,24 +288,34 @@
       <div
         id="step-5"
         class="step stop"
-        data-x="-168"
-        data-y="370"
+        data-x="-207"
+        data-y="410"
         data-z="5"
-        data-scale="0.5"
+        data-scale="0.18"
       >
         <div
           id="step-5-child"
           style="
-            width: 630px;
-            height: 470px;
+            width: 750px;
+            height: 1020px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
         ></div>
       </div>
 
-      <div id="overview" class="step active" data-x="0" data-y="0" data-z="0">
-        <img src="images/primera.png" />
+      <div
+        id="overview"
+        class="step active"
+        data-x="0"
+        data-y="0"
+        data-z="0"
+        data-scale="1"
+      >
+        <img
+          src="images/segunda.png"
+          style="width: 666.66px; height: 1000px z-index: 0"
+        />
       </div>
     </div>
 

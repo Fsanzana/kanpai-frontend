@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../../../assets/favicon.png"
+    />
+
     <style>
       body {
         background-color: #303030;
@@ -30,15 +35,18 @@
         top: 50%;
         left: 0px;
 
-        border-color: pink;
         border-radius: 2rem;
-        background-color: #e35f5f;
+        background-color: #b63333;
         border: none;
-        color: #303030;
+        color: transparent;
         padding: 0.2rem 0.8rem;
+
+        background-image: url("../../../../assets/arrow_left.png");
+        background-position: center;
+        background-size: contain;
+
         cursor: pointer;
         font-size: 2rem;
-        margin-right: 0.5rem;
       }
 
       #impress-navigation-ui-next {
@@ -46,15 +54,19 @@
         margin-right: 10px;
         top: 50%;
         right: 0px;
-        border-color: pink;
+
         border-radius: 2rem;
-        background-color: #e35f5f;
+        background-color: #b63333;
         border: none;
-        color: #303030;
+        color: transparent;
         padding: 0.2rem 0.8rem;
+
+        background-image: url("../../../../assets/arrow_right.png");
+        background-position: center;
+        background-size: contain;
+
         cursor: pointer;
         font-size: 2rem;
-        margin-right: 0.5rem;
       }
 
       #impress-navigation-ui-prev:hover {
@@ -66,24 +78,115 @@
       }
 
       #impress-navigation-ui-prev:active {
-        background-color: #000000;
+        background-color: #cacaca;
       }
 
       #impress-navigation-ui-next:active {
-        background-color: #000000;
+        background-color: #cacaca;
       }
 
       #impress-navigation-ui-select {
-        display: none;
+        display: block;
       }
 
       #impress-autoplay-playpause {
         display: none;
       }
+
+      #overviewSwitch {
+        position: absolute;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        left: 0px;
+        bottom: 0px;
+
+        border-radius: 2rem;
+        background-color: #b63333;
+        border: none;
+        color: #303030;
+        padding: 0.35rem 0.5rem;
+
+        background-position: center;
+        background-size: contain;
+
+        cursor: pointer;
+      }
+
+      #overviewSwitch:hover {
+        background-color: #ffffff;
+      }
+
+      #overviewSwitch:active {
+        background-color: #cacaca;
+      }
     </style>
   </head>
 
   <script type="text/javascript">
+    var swtichBoolean = false;
+    var steps;
+
+    function overviewSwitch() {
+      if (swtichBoolean) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function stepState() {
+      //testo testo
+      nextPageJump();
+      prevPageJump();
+      //testo testo
+
+      return window.location.href.split("/").pop();
+    }
+
+    function nextPageJump() {
+      if (
+        steps ===
+        parseInt(window.location.href.split("/").pop().split("-").pop())
+      ) {
+        var pageNumber = window.location.pathname
+          .split("/")
+          .pop()
+          .split("page")
+          .pop();
+
+        var nextPage = parseInt(pageNumber) + 1 + ".html";
+
+        console.log(nextPage);
+        location.assign("page" + nextPage);
+      }
+    }
+
+    function prevPageJump() {
+      if (
+        1 === parseInt(window.location.href.split("/").pop().split("-").pop())
+      ) {
+        var pageNumber = window.location.pathname
+          .split("/")
+          .pop()
+          .split("page")
+          .pop();
+
+        var nextPage = parseInt(pageNumber) - 1 + ".html";
+
+        console.log(nextPage);
+        location.assign("page" + nextPage);
+      }
+    }
+
+    function setSteps() {
+      steps = parseInt(
+        (document.getElementById("impress").getElementsByTagName("*").length -
+          1) /
+          2 -
+          1
+      );
+    }
+
     function docReady(fn) {
       // see if DOM is already available
       if (
@@ -111,14 +214,20 @@
             if (
               document.getElementById("overview").classList.contains("present")
             ) {
-              for (var i = 5; i >= 0; i--) {
+              document.getElementById("impress").style.zIndex = 1;
+              document.getElementById("impress-toolbar").style.zIndex = 0;
+
+              for (var i = steps; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "0px";
                 }
               }
             } else {
-              for (var i = 5; i >= 0; i--) {
+              document.getElementById("impress").style.zIndex = 0;
+              document.getElementById("impress-toolbar").style.zIndex = 1;
+
+              for (var i = steps; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "3000px solid #303030";
@@ -137,27 +246,36 @@
     });
   </script>
 
-  <body>
+  <body onload="setSteps()">
     <div id="impress-toolbar" style="position: absolute; z-index: 1">
-      <!--<div id="like_button_container" position= "absolute"  ></div>-->
-
-      <button id="overviewSwitch">meme testing</button>
+      <button id="overviewSwitch" onclick="stepState()">
+        <img
+          id="overviewIcon"
+          src="../../../../assets/overview.png"
+          height="30rem"
+        />
+      </button>
+      <button
+        id="impress-navigation-ui-next"
+        onclick="nextPageJump()"
+        style="width: 2rem; height: 2rem"
+      ></button>
     </div>
 
-    <div id="impress" data-transition-duration="250">
+    <div id="impress" data-transition-duration="250" style="z-index: 0">
       <div
         id="step-1"
         class="step future"
-        data-x="-0"
-        data-y="-160"
+        data-x="0"
+        data-y="-250"
         data-z="1"
-        data-scale="0.69"
+        data-scale="0.5"
       >
         <div
           id="step-1-child"
           style="
-            width: 1100px;
-            height: 975px;
+            width: 1500px;
+            height: 1000px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -167,16 +285,16 @@
       <div
         id="step-2"
         class="step future"
-        data-x="250"
-        data-y="330"
+        data-x="168"
+        data-y="112"
         data-z="2"
-        data-scale="0.33"
+        data-scale="0.25"
       >
         <div
           id="step-2-child"
           style="
-            width: 600px;
-            height: 1030px;
+            width: 1200px;
+            height: 850px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -186,16 +304,16 @@
       <div
         id="step-3"
         class="step future"
-        data-x="5"
-        data-y="330"
+        data-x="-164"
+        data-y="111"
         data-z="3"
-        data-scale="0.33"
+        data-scale="0.25"
       >
         <div
           id="step-3-child"
           style="
-            width: 860px;
-            height: 1030px;
+            width: 1200px;
+            height: 850px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -205,16 +323,16 @@
       <div
         id="step-4"
         class="step future"
-        data-x="-205"
-        data-y="245"
+        data-x="168"
+        data-y="339"
         data-z="4"
-        data-scale="0.17"
+        data-scale="0.25"
       >
         <div
           id="step-4-child"
           style="
-            width: 800px;
-            height: 1020px;
+            width: 1200px;
+            height: 850px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
@@ -224,35 +342,28 @@
       <div
         id="step-5"
         class="step stop"
-        data-x="-207"
-        data-y="410"
+        data-x="-164"
+        data-y="339"
         data-z="5"
-        data-scale="0.18"
+        data-scale="0.25"
       >
         <div
           id="step-5-child"
           style="
-            width: 750px;
-            height: 1020px;
+            width: 1200px;
+            height: 850px;
             border: 3000px solid #303030;
             opacity: 0.99;
           "
         ></div>
       </div>
 
-      <div
-        id="overview"
-        class="step active"
-        data-x="0"
-        data-y="0"
-        data-z="0"
-        data-scale="1"
-      >
-        <img src="images/segunda.png" style="width: 666.66px; height: 1000px" />
+      <div id="overview" class="step active" data-x="0" data-y="0" data-z="0">
+        <img src="1.jpg" />
       </div>
     </div>
 
-    <script src="js/impress.js"></script>
+    <script src="../../../js/impress.js"></script>
     <script>
       impress().init();
     </script>
