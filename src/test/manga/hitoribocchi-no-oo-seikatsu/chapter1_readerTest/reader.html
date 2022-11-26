@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head >
+    <script src=
+"https://code.jquery.com/jquery-3.5.1.js"></script>
     <link
       rel="icon"
       type="image/x-icon"
@@ -125,7 +127,76 @@
   <script type="text/javascript">
     var swtichBoolean = false;
     var steps;
+    var currentPage= 1;
 
+    function loadManga(){
+
+      loadPage();
+
+      setSteps();
+
+      document.getElementById("impress-navigation-ui-next").onclick =
+        nextPageJump;
+
+      document.getElementById("impress-navigation-ui-prev").onclick =
+        prevPageJump;
+      
+    }
+
+    function loadPage(){
+      $(document).ready(function () {
+  
+        $.getJSON("data.json", 
+            function (data) {
+              var panels = '';
+
+              $.each(data, function (key, value) {
+                if(parseInt(value.page)===parseInt(currentPage)){
+
+          for (var i = 0; i <value.panels.length; i++) {
+           if (value.panels[i].id==='overview'){
+             panels+='<div id="overview" class="step active" data-x="0" data-y="0" data-z="0"><img src="'+
+              value.panels[i].src+'"/></div>';
+           } else {
+                panels += '<div id="' + 
+                value.panels[i].id+ '" class="step future" data-x="'+
+                value.panels[i].dataX + '" data-y="'+
+                value.panels[i].dataY + '" data-z="';
+                panels+=value.panels[i].id.split('-').pop();
+                panels+=  '" data-scale="'+
+                value.panels[i].dataScale +'"><div id="'+
+                value.panels[i].id +'-child" style="width: '+
+                value.panels[i].width + 'px;height: '+
+                value.panels[i].height + 'px; border: 3000px solid #303030; opacity: 0.99;"></div></div>';
+              
+            } 
+          }
+          }
+          });
+          document.getElementById("impress").innerHTML=panels;
+          });
+        });
+    }
+    
+    function updateImpress(){
+      $('#impress').load('#impress > *')
+    }
+    
+
+    function setSteps() {
+      steps = parseInt(
+        (document.getElementById("impress").getElementsByTagName("*").length -
+          1) /
+          2 -
+          1
+      );
+    }
+
+    function stepState() {
+      return window.location.href.split("/").pop();
+    }
+
+    //NOT DONE YET
     function overviewSwitch() {
       if (swtichBoolean) {
         return true;
@@ -133,10 +204,7 @@
         return false;
       }
     }
-
-    function stepState() {
-      return window.location.href.split("/").pop();
-    }
+    //NOT DONE YET
 
     function nextPageJump() {
       if (
@@ -144,15 +212,11 @@
           parseInt(window.location.href.split("/").pop().split("-").pop()) ||
         window.location.href.split("/").pop().split("-").pop() === "overview"
       ) {
-        var pageNumber = window.location.pathname
-          .split("/")
-          .pop()
-          .split("page")
-          .pop();
 
-        var nextPage = parseInt(pageNumber) + 1 + ".html";
+        currentPage++;
 
-        location.assign("page" + nextPage);
+        //updateImpress();
+        // location.reload();
       }
     }
 
@@ -162,31 +226,12 @@
           parseInt(window.location.href.split("/").pop().split("-").pop()) ||
         window.location.href.split("/").pop().split("-").pop() === "overview"
       ) {
-        var pageNumber = window.location.pathname
-          .split("/")
-          .pop()
-          .split("page")
-          .pop();
+        
+        currentPage--;
 
-        var nextPage = parseInt(pageNumber) - 1 + ".html";
-
-        location.assign("page" + nextPage);
+        //document.getElementById("body");
+        // location.reload();
       }
-    }
-
-    function setSteps() {
-      steps = parseInt(
-        (document.getElementById("impress").getElementsByTagName("*").length -
-          1) /
-          2 -
-          1
-      );
-
-      document.getElementById("impress-navigation-ui-next").onclick =
-        nextPageJump;
-
-      document.getElementById("impress-navigation-ui-prev").onclick =
-        prevPageJump;
     }
 
     function docReady(fn) {
@@ -201,6 +246,10 @@
         document.addEventListener("DOMContentLoaded", fn);
       }
     }
+
+    function updateDiv(){ 
+    $( "#here" ).load(window.location.href + " #here" );
+  }
 
     docReady(function () {
       function callback(mutationsList) {
@@ -248,7 +297,7 @@
     });
   </script>
 
-  <body onload="setSteps()">
+  <body onload="loadManga()">
     <div id="impress-toolbar" style="position: absolute; z-index: 1">
       <button id="overviewSwitch" onclick="stepState()">
         <img
@@ -260,11 +309,9 @@
     </div>
 
     <div id="impress" data-transition-duration="250" style="z-index: 0">
-      <div id="overview" class="step active" data-x="0" data-y="0" data-z="0">
-        <img src="0.jpg" />
-      </div>
-    </div>
+      <!-- TESTO MEME -->
 
+      <!-- END TESTO MEME -->
     <script src="../../../js/impress.js"></script>
     <script>
       impress().init();
