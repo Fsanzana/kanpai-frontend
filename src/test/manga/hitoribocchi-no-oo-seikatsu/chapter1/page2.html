@@ -124,13 +124,27 @@
 
   <script type="text/javascript">
     var swtichBoolean = false;
+    currentStep = 1;
     var steps;
 
     function overviewSwitch() {
-      if (swtichBoolean) {
-        return true;
+      if (
+        window.location.href.split("/").pop().split("-").pop() === "overview"
+      ) {
+        document.getElementById("overviewIcon").src =
+          "../../../../assets/overview.png";
+        location.assign(
+          window.location.pathname.split("/").pop() + "#/step-" + currentStep
+        );
       } else {
-        return false;
+        currentStep = parseInt(
+          window.location.href.split("/").pop().split("-").pop()
+        );
+        document.getElementById("overviewIcon").src =
+          "../../../../assets/panel.png";
+        location.assign(
+          window.location.pathname.split("/").pop() + "#/overview"
+        );
       }
     }
 
@@ -251,7 +265,7 @@
 
   <body onload="setSteps()">
     <div id="impress-toolbar" style="position: absolute; z-index: 1">
-      <button id="overviewSwitch" onclick="stepState()">
+      <button id="overviewSwitch" onclick="overviewSwitch()">
         <img
           id="overviewIcon"
           src="../../../../assets/overview.png"

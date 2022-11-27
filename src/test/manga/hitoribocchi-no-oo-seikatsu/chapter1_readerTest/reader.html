@@ -88,7 +88,7 @@
       }
 
       #impress-navigation-ui-select {
-        display: block;
+        display: none;
       }
 
       #impress-autoplay-playpause {
@@ -114,6 +114,26 @@
         cursor: pointer;
       }
 
+      #pageInput {
+        position: absolute;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        bottom:0px;
+        right: 0px;
+
+        border-radius: 2rem;
+        background-color: #b63333;
+        border: none;
+        padding: 0.4rem 0.4rem;
+        width: 3.5rem;
+
+        background-position: center;
+        background-size: contain;
+
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
       #overviewSwitch:hover {
         background-color: #ffffff;
       }
@@ -126,14 +146,15 @@
 
   <script type="text/javascript">
     var swtichBoolean = false;
-    var steps;
-    var currentPage= 1;
+    var steps = [];
+    //SET CURRENT PAGE
+    var currentPage= 0;
+    //SET CURRENT PAGE
+    var currentStep=1;
 
     function loadManga(){
 
       loadPage();
-
-      setSteps();
 
       document.getElementById("impress-navigation-ui-next").onclick =
         nextPageJump;
@@ -151,8 +172,8 @@
               var panels = '';
 
               $.each(data, function (key, value) {
+                steps[key]=(value.panels.length-1);
                 if(parseInt(value.page)===parseInt(currentPage)){
-
           for (var i = 0; i <value.panels.length; i++) {
            if (value.panels[i].id==='overview'){
              panels+='<div id="overview" class="step active" data-x="0" data-y="0" data-z="0"><img src="'+
@@ -176,47 +197,58 @@
           document.getElementById("impress").innerHTML=panels;
           });
         });
-    }
-    
-    function updateImpress(){
-      $('#impress').load('#impress > *')
-    }
-    
+    }   
 
-    function setSteps() {
-      steps = parseInt(
-        (document.getElementById("impress").getElementsByTagName("*").length -
-          1) /
-          2 -
-          1
-      );
-    }
-
-    function stepState() {
-      return window.location.href.split("/").pop();
-    }
-
-    //NOT DONE YET
     function overviewSwitch() {
-      if (swtichBoolean) {
-        return true;
+      if (window.location.href.split("/").pop().split("-").pop() === "overview") {
+        if (steps[currentPage] != 0) {
+          document.getElementById("overviewIcon").src="../../../../assets/overview.png";
+          location.assign("reader.html#/step-"+currentStep);
+        } else {
+          document.getElementById("overviewIcon").src="../../../../assets/unable.png";
+        }
       } else {
-        return false;
+        currentStep=parseInt(window.location.href.split("/").pop().split("-").pop());
+        document.getElementById("overviewIcon").src="../../../../assets/panel.png";
+        location.assign("reader.html#/overview");
       }
     }
-    //NOT DONE YET
+
+    function onlyNumberKey(evt) {
+              
+              // Only ASCII character in that range allowed
+              var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+              if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                  return false;
+              return true;
+          }
 
     function nextPageJump() {
+
       if (
-        steps ===
+        steps[currentPage] ===
           parseInt(window.location.href.split("/").pop().split("-").pop()) ||
         window.location.href.split("/").pop().split("-").pop() === "overview"
       ) {
 
-        currentPage++;
+        if (currentPage+1 < steps.length) {
+          currentPage++;
+          
+          if ((steps[currentPage]) === 0){
+            location.assign("reader.html#/overview");
+          }else {
+            currentStep=1;
+            if (!window.location.href.split("/").pop() === "overview"){
+              location.assign("reader.html#/step-1");
+            }
+          }
 
-        //updateImpress();
-        // location.reload();
+          loadPage();
+        } else {
+          console.log("LOAD NEXT CHAPTER");
+          //LOAD NEXT CHAPTER
+        }
+        
       }
     }
 
@@ -226,11 +258,25 @@
           parseInt(window.location.href.split("/").pop().split("-").pop()) ||
         window.location.href.split("/").pop().split("-").pop() === "overview"
       ) {
-        
-        currentPage--;
 
-        //document.getElementById("body");
-        // location.reload();
+        if (currentPage-1 >= 0) {
+          currentPage--;
+          
+          if ((steps[currentPage]) === 0){
+            location.assign("reader.html#/overview");
+          }else {
+            if (!window.location.href.split("/").pop() === "overview"){
+              currentStep=steps[currentPage];
+              location.assign("reader.html#/step-"+steps[currentPage]);
+            }
+          }
+
+          loadPage();
+        } else {
+          console.log("LOAD PREV CHAPTER");
+          //LOAD NEXT CHAPTER
+        }
+
       }
     }
 
@@ -247,9 +293,17 @@
       }
     }
 
+    //PUT THE SOMEWHAY THAT WILL UPTDATE THE IMPRESS TO LOAD PAGE
+
     function updateDiv(){ 
     $( "#here" ).load(window.location.href + " #here" );
   }
+
+  function updateImpress(){
+      $('#impress').load('#impress > *')
+    }
+
+  //PUT THE SOMEWHAY THAT WILL UPTDATE THE IMPRESS TO LOAD PAGE
 
     docReady(function () {
       function callback(mutationsList) {
@@ -268,7 +322,7 @@
               document.getElementById("impress").style.zIndex = 1;
               document.getElementById("impress-toolbar").style.zIndex = 0;
 
-              for (var i = steps; i >= 0; i--) {
+              for (var i = steps[currentPage]; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "0px";
@@ -278,7 +332,7 @@
               document.getElementById("impress").style.zIndex = 0;
               document.getElementById("impress-toolbar").style.zIndex = 1;
 
-              for (var i = steps; i >= 0; i--) {
+              for (var i = steps[currentPage]; i >= 0; i--) {
                 if (document.getElementById("step-" + i)) {
                   document.getElementById("step-" + i + "-child").style.border =
                     "3000px solid #303030";
@@ -299,22 +353,28 @@
 
   <body onload="loadManga()">
     <div id="impress-toolbar" style="position: absolute; z-index: 1">
-      <button id="overviewSwitch" onclick="stepState()">
+      <button id="overviewSwitch" onclick="overviewSwitch()" title="Switch view">
         <img
           id="overviewIcon"
           src="../../../../assets/overview.png"
           height="30rem"
         />
       </button>
+        <input id="pageInput" type="text" 
+                   onkeypress="return onlyNumberKey(event)" 
+                   maxlength="3"
+                   value="0"
+                   title="Choose page">
+                   <b>/0</b>
     </div>
 
     <div id="impress" data-transition-duration="250" style="z-index: 0">
       <!-- TESTO MEME -->
 
       <!-- END TESTO MEME -->
-    <script src="../../../js/impress.js"></script>
-    <script>
-      impress().init();
-    </script>
+      <script src="../../../js/impress.js"></script>
+      <script>
+        impress().init();
+      </script>
   </body>
 </html>

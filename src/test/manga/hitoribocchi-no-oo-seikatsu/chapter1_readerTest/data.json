@@ -118,5 +118,9 @@
       },
       { "id": "overview", "src": "2.jpg" }
     ]
+  },
+  {
+    "page": "3",
+    "panels": [{ "id": "overview", "src": "0.jpg" }]
   }
 ]
