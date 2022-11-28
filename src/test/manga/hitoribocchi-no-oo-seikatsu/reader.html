@@ -10,7 +10,10 @@
   />
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
     body {
+      font-family: 'Patrick Hand', cursive;
       background-color: #303030;
       margin: 0px;
       padding: 0px;
@@ -115,23 +118,7 @@
     }
 
     #pageInput {
-      position: absolute;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      bottom:0px;
-      right: 0px;
-
-      border-radius: 2rem;
-      background-color: #b63333;
-      border: none;
-      padding: 0.4rem 0.4rem;
-      width: 3.5rem;
-      background-position: center;
-      background-size: contain;
-
       cursor: pointer;
-      font-size: 1rem;
-      font: verdana;
       display: flex;
     }
 
@@ -191,16 +178,15 @@
         function (data) {
           var panels = '';
 
-          //chapters=data[parseInt(data.length)-1].chapter;
-
           for (var j=0;j<data.length;j++) {
 
             chapters[data[j].chapter]=data[j].pages.length-1;
             if(parseInt(data[j].chapter)===parseInt(currentChapter))
             {
 
-              pages = data[j].pages.length;
+              pages = data[j].pages.length-1;
               document.getElementById("pageAmount").innerHTML=pages;
+              setPageInputSize(pages);
 
               $.each(data[j].pages, function (key, value) {
                 
@@ -208,6 +194,19 @@
 
                 if(parseInt(value.page)===parseInt(currentPage))
                 {
+
+                  
+                  panels+='<div id="iStyle"; style="position: absolute; transform-origin: left top; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(';
+                  if (value.panels[0].id==='overview') {
+                    panels+='0px, 0px, 0px);">';
+                  }else {
+                    panels+=
+                    (-value.panels[0].dataX) + 'px, '+
+                    (-value.panels[0].dataY) + 'px, ';
+                    panels+=(-value.panels[0].id.split('-').pop());
+                    panels+='px);">';
+                  }
+                  
                   for (var i = 0; i <value.panels.length; i++) 
                   {
                     if (value.panels[i].id==='overview')
@@ -235,30 +234,71 @@
             }
           }
           document.getElementById("impress").innerHTML=panels;
+          document.getElementById('impress').click();
         });
     });
   }   
 
+  function setPageInputSize(amount){
+    if (parseInt(amount)<10) {
+      document.getElementById("pageInput").style.width="2rem";
+      document.getElementById("pageTextField").style.width="0.5rem";
+      document.getElementById("pageTextField").maxLength=1;
+    } else if (parseInt(amount)>9 && parseInt(amount)<100) {
+      document.getElementById("pageInput").style.width="3.2rem";
+      document.getElementById("pageTextField").style.width="1.15rem";
+      document.getElementById("pageTextField").maxLength=2;
+    } else {
+      document.getElementById("pageInput").style.width="4.2rem";
+      document.getElementById("pageTextField").style.width="1.7rem";
+      document.getElementById("pageTextField").maxLength=3;
+    }
+    
+  }
+
   function overviewSwitch() {
     if (window.location.href.split("/").pop().split("-").pop() === "overview") {
       if (steps[currentPage] != 0) {
-        document.getElementById("overviewIcon").src="../../../assets/overview.png";
         location.assign("reader.html#/step-"+currentStep);
       } else {
         document.getElementById("overviewIcon").src="../../../assets/unable.png";
       }
     } else {
       currentStep=parseInt(window.location.href.split("/").pop().split("-").pop());
-      document.getElementById("overviewIcon").src="../../../assets/panel.png";
       location.assign("reader.html#/overview");
+    }
+    overviewSwitchIcon(window.location.href.split("/").pop().split("-").pop());
+  }
+
+  function overviewSwitchIcon(state){
+    if (state==="overview"){
+      document.getElementById("overviewIcon").src="../../../assets/overview.png";
+    }else {
+      document.getElementById("overviewIcon").src="../../../assets/panel.png";
     }
   }
 
   function onlyNumberKey(evt) {
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
       return false;
-    return true;
+    }else {
+      return true;
+    }
+  }
+
+  function pageSelector(){
+    document.querySelector("input")
+  .addEventListener('change', (e) => {
+    if (parseInt(e.currentTarget.value) < parseInt(chapters[currentChapter])) {
+    currentPage=e.currentTarget.value;
+    loadPage();
+    }
+ });
+  }
+
+  function updateISyle(){
+    console.log(document.getElementById('iStyle').translate3d);
   }
 
   function nextPageJump() {
@@ -286,6 +326,9 @@
         if(currentChapter<chapters.length-1){
           currentChapter++;
           currentPage=0;
+
+          document.getElementById("pageTextField").value=currentPage;
+
           loadPage();
         } else {
           console.log("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
@@ -321,6 +364,8 @@
         if(parseInt(currentChapter)>1){
           currentChapter--;
           currentPage=chapters[currentChapter];
+
+          document.getElementById("pageTextField").value=currentPage;
           loadPage();
         } else {
           console.log("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
@@ -409,29 +454,31 @@ docReady(function () {
       border-radius: 2rem;
       background-color: #b63333;
       border: none;
-      padding: 0.4rem 0.4rem;
-      width: 4rem;
+      padding: 0rem 0.4rem;
+      width: 3.2rem;
       background-position: center;
       background-size: contain;
-    font-family: sans-serif;
-    font-size: 1rem;
+
+    font-size: 1.25rem;
       text-align:left
   ">
       <input id="pageTextField" type="text" 
       onkeypress="return onlyNumberKey(event)" 
+      onkeydown="pageSelector(this)"
       maxlength="3"
       value="0"
         max="999"
         min="0"
-      style="width: 1.65rem;
+      style="width: 1.15rem;
       align-items: center;
-      background-color:#b63333;
+      background-color:transparent;
       border: none;
-      font-size: 1rem;
-      font-family: sans-serif;
+      font-size: 1.25rem;
+      font-family: 'Patrick Hand', cursive;
       text-align:right"
       title="Choose page">
-      /<a id="pageAmount" title="Current page"></a>
+      /
+      <a id="pageAmount" title="Current page" ></a>
     </div> 
   </div>
 
