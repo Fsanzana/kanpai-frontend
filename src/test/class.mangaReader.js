@@ -5,7 +5,7 @@ class mangaReader {
 
   currentChapter = 1;
   currentStep = 0;
-  currentPage = 0;
+  currentPage = 1;
 
   overviewMode = false;
   src = "";
@@ -35,6 +35,8 @@ class mangaReader {
     //SET DEFAULT EMPTY FRAME
     this.setDiv();
 
+    //SET DEFAULT EMPTY OVERVIEW
+    this.setOverview(this.src);
     //SET STEPS
     this.retrieveJson();
   }
@@ -57,7 +59,7 @@ class mangaReader {
               for (var i = 0; i < value.panels.length; i++) {
                 if (value.panels[i].id === "overview") {
                   reader.stepValues[0] = [0 , 0 , 0 , 0 , 0 , 0];
-                  reader.setOverview(reader.src + value.panels[i].src);
+                  reader.changeOverview(reader.src + value.panels[i].src);
                 } else {
                   reader.stepValues[i+1] = [
                     value.panels[i].id.split("-").pop(),
@@ -79,35 +81,34 @@ class mangaReader {
 
   //NEXT SLIDE / PAGE
   nextButtonFunc() {
-    //console.log("next");
     if (this.overviewMode) {
       this.nextPage();
     } else {
       if (this.currentStep === this.steps[this.currentPage]) {
-        //console.log('0');
         this.nextPage();
       } else {
-        if (this.currentStep + 1 < this.steps[this.currentPage] - 1) {
-          //console.log('1');
-          this.stepFrame();
+        if (this.currentStep < this.steps[this.currentPage]) {
           this.currentStep++;
+          this.stepFrame();
         } else {
           this.nextPage();
         }
       }
     }
+    //PAGE 1 OF FIRST CHAPTER BUGGED, DON´T KNOW WHY.
     this.updateStyle(this.stepValues[this.currentStep]);
+    this.changeFrame(this.stepValues[this.currentStep]);
+    this.stepFrame(this.currentStep);
   }
 
   nextPage() {
-    //console.log('next page');
     if (this.currentPage + 1 < this.chapters[this.currentChapter] + 1) {
       this.currentPage++;
-      //fixing this, finalize pls
+
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.currentStep = 0;
       } else {
-        this.currentStep = 0;
+        this.currentStep = 1;
       }
 
       document.getElementById("pageTextField").value = this.currentPage;
@@ -134,12 +135,8 @@ class mangaReader {
   }
 
   // MOVE THE FOCUS FRAME
-  stepFrame(){
-    for(var i=0;i<this.steps[parseInt(this.currentPage)];i++){
-      var tempId='step-'+(parseInt(i)+1);
-      console.log(document.getElementById(tempId));
-      document.getElementById(tempId).style.display;
-    }
+  stepFrame(step){
+    
   }
 
   //PREV SLIDE / PAGE
@@ -205,7 +202,7 @@ class mangaReader {
     document.getElementById("readerStyle").innerHTML += temp;
   }
 
-  changeFrame() {
+  changeFrame(step) {
     document.getElementById("frame").dataX=step[1];
     document.getElementById("frame").dataY=step[2];
     document.getElementById("frame").dataZ=step[0];
@@ -220,6 +217,7 @@ class mangaReader {
     step[5] +
     ')';
 
+    document.getElementById("frame-child");
     document.getElementById("frame-child").style.width=step[3];
     document.getElementById("frame-child").style.width=step[4];
   }
@@ -256,9 +254,8 @@ class mangaReader {
       "px," +
       -parseInt(values[0]) +
       "px)";
-      var scale=(1/parseInt(values[3]));
     document.getElementById("readerStyle").style.transform = temp;
-    //document.getElementById("mangaReader").style.transform='scale('+(1/parseInt(values[3]))+')';
+    document.getElementById("mangaReader").style.transform='scale('+parseFloat(values[5])+')';
   }
 
   onlyNumberKey(evt) {

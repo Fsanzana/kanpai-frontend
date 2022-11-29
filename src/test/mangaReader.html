@@ -9,6 +9,11 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
+      html {
+        overflow-y:hidden;
+        overflow-x: hidden;
+      }
+
       body {
         font-family: "Patrick Hand", cursive;
         background-color: #303030;
@@ -104,7 +109,7 @@
       "
     ></div>
 
-    <div id="mangaReader" data-transition-duration="250"></div>
+    <div id="mangaReader" scrolling="no" data-transition-duration="250"></div>
     <script>
       var reader = new mangaReader("./manga/hitoribocchi-no-oo-seikatsu/");
     </script>
