@@ -1,7 +1,7 @@
-.separator{
-  color: transparent;
-}
+
 .appbar{
+  position: absolute;
+  z-index: 1;
   margin-bottom: 10px;
 }
 
@@ -9,4 +9,6 @@
 .mangas {
   display: inline-block;
   margin-top: 2rem;
+  max-width: 100%;
+  margin-left: auto;
 }

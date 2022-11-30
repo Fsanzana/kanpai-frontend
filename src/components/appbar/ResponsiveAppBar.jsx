@@ -56,7 +56,7 @@ function ResponsiveAppBar() {
 
   return (
     <ThemeProvider theme={theme}>
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <a href="/" sx={{ display: { xs: 'flex', md: 'none' ,width: "60px", height: "80%"}, mr: 1 }} >         

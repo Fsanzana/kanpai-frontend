@@ -31,7 +31,7 @@ const descTrunc = descripcion.substring(0,120)+"..."
   return (
     <ThemeProvider theme={theme}>
     <Box sx={{ display: "inline-block" , marginRight: "1rem"}}>
-    <Card sx={{ width: 285 , height: 380, display: "inline-block"}}>
+    <Card sx={{ width: 245 , height: 395, display: "inline-block"}}>
       <CardActionArea>
         <CardMedia
           component="img"
