@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-
 const pages = ['populares', 'nacionales', 'últimos'];
 const settings = ['Perfil', 'Cuenta', 'Biblioteca', 'Desloguear'];
 
@@ -36,10 +35,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" className="topbar" style={{background: "#2b2b2b"}}>
+    <AppBar position="static" className="topbar" sx={{backgroundColor: "#2b2b2b"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <a href="/" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} style={{width: "60px", height: "80%"}} >         
+          <a href="/" sx={{ display: { xs: 'flex', md: 'none' ,width: "60px", height: "80%"}, mr: 1 }} >         
            <img src="src/assets/favicon.png" style={{width: "50px", height:"100%"}} />
           </a>
 
