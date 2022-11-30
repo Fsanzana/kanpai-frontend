@@ -1,11 +1,11 @@
-class mangaReader {
+class MangaReader {
   chapters = [];
   stepValues = [];
   steps = [];
 
   currentChapter = 1;
-  currentStep = 0;
-  currentPage = 1;
+  currentStep = 1;
+  currentPage = 0;
 
   overviewMode = false;
   src = "";
@@ -27,7 +27,7 @@ class mangaReader {
 
     //SET STYLE DIV
     document.getElementById("mangaReader").innerHTML =
-      '<div id="readerStyle" style="position: absolute; transform-origin: left top; transition: all 500ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);">';
+      '<div id="readerStyle" style="position: absolute; transform-origin: left top; transition: all 350ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);">';
 
     //SET GUI
     this.setGui();
@@ -44,30 +44,43 @@ class mangaReader {
   //JSON JSON JSON
   retrieveJson() {
     var pages;
+    //GET JSON DATA
     $.getJSON(this.src + "data.json", function (data) {
+      // TRAVEL THROUGH CHAPTERS
       for (var j = 0; j < data.length; j++) {
+        // FILL chapters ARRAY WHITH PAGE AMOUNTS
         reader.chapters[data[j].chapter] = data[j].pages.length - 1;
 
+        // DO ONLY IF CURRENT CHAPTER
         if (parseInt(data[j].chapter) === parseInt(reader.currentChapter)) {
+          // ASIGN PAGE AMOUNT FOR THIS CHAPTER
           pages = data[j].pages.length - 1;
+
+          // ASIGN PAGE AMOUNT IN PAGE SELECTOR (GUI)
           document.getElementById("pageAmount").innerHTML = pages;
+          document.getElementById("pageTextField").value = reader.currentPage;
           reader.setPageInputSize(pages);
+
+          // TRAVEL THROUGH PAGES
           $.each(data[j].pages, function (key, value) {
+            // FILL stteps ARRAY WHITH STEP AMOUNTS FOR EACH PAGE
             reader.steps[key] = value.panels.length - 1;
 
+            // DO ONLY IF CURRENT PAGE
             if (parseInt(value.page) === parseInt(reader.currentPage)) {
+              // GO THROUGH PANELS AND FILL stepValues ARRAY.
               for (var i = 0; i < value.panels.length; i++) {
                 if (value.panels[i].id === "overview") {
-                  reader.stepValues[0] = [0 , 0 , 0 , 0 , 0 , 0];
+                  reader.stepValues[0] = [0, 0, 0, 0, 0, 0.75];
                   reader.changeOverview(reader.src + value.panels[i].src);
                 } else {
-                  reader.stepValues[i+1] = [
-                    value.panels[i].id.split("-").pop(),
+                  reader.stepValues[i + 1] = [
+                    value.panels[i].id,
                     value.panels[i].dataX,
                     value.panels[i].dataY,
                     value.panels[i].width,
                     value.panels[i].height,
-                    value.panels[i].dataScale
+                    value.panels[i].dataScale,
                   ];
                 }
               }
@@ -79,36 +92,50 @@ class mangaReader {
   }
   //JSON JSON JSON
 
-  //NEXT SLIDE / PAGE
-  nextButtonFunc() {
+  //NEXT SLIDE || PAGE
+  async nextButtonFunc() {
     if (this.overviewMode) {
-      this.nextPage();
+      setTimeout(() => {
+        this.nextPage(this.currentPage + 1);
+      }, 1);
     } else {
       if (this.currentStep === this.steps[this.currentPage]) {
-        this.nextPage();
+        this.nextPage(this.currentPage + 1);
       } else {
         if (this.currentStep < this.steps[this.currentPage]) {
           this.currentStep++;
-          this.stepFrame();
         } else {
-          this.nextPage();
+          this.nextPage(this.currentPage + 1);
         }
       }
     }
-    //PAGE 1 OF FIRST CHAPTER BUGGED, DON´T KNOW WHY.
-    this.updateStyle(this.stepValues[this.currentStep]);
-    this.changeFrame(this.stepValues[this.currentStep]);
-    this.stepFrame(this.currentStep);
+
+    //ITEM 1 OF NEXT PAGE ALWAYS READS ITEM 1 OF LAST PAGE, DON´T KNOW WHY.
+
+    if (!this.overviewMode) {
+      if (this.stepValues[this.currentStep] !== undefined) {
+        this.updateStyle(this.stepValues[this.currentStep]);
+        this.changeFrame(this.stepValues[this.currentStep]);
+      } else {
+        this.currentStep--;
+        setTimeout(() => {
+          this.nextButtonFunc();
+        }, 1);
+      }
+    }
   }
 
-  nextPage() {
-    if (this.currentPage + 1 < this.chapters[this.currentChapter] + 1) {
-      this.currentPage++;
+  nextPage(nextPage) {
+    this.stepValues = [];
+    if (nextPage < this.chapters[this.currentChapter] + 1) {
+      this.currentPage = nextPage;
 
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.currentStep = 0;
+        this.overviewSwitchIcon("overview");
       } else {
         this.currentStep = 1;
+        this.overviewSwitchIcon("panel");
       }
 
       document.getElementById("pageTextField").value = this.currentPage;
@@ -134,49 +161,156 @@ class mangaReader {
     }
   }
 
-  // MOVE THE FOCUS FRAME
-  stepFrame(step){
-    
-  }
-
   //PREV SLIDE / PAGE
   prevButtonFunc() {
-    console.log("prev");
+    if (this.overviewMode) {
+      setTimeout(() => {
+        this.prevPage();
+      }, 1);
+    } else {
+      if (this.currentStep === 1) {
+        this.prevPage();
+      } else {
+        if (this.currentStep > 0) {
+          this.currentStep--;
+        } else {
+          this.prevPage();
+        }
+      }
+    }
+
+    //ITEM 1 OF NEXT PAGE ALWAYS READS ITEM 1 OF LAST PAGE, DON´T KNOW WHY.
+
+    if (!this.overviewMode) {
+      if (this.stepValues[this.currentStep] !== undefined) {
+        this.updateStyle(this.stepValues[this.currentStep]);
+        this.changeFrame(this.stepValues[this.currentStep]);
+      } else {
+        this.currentStep--;
+        setTimeout(() => {
+          this.nextButtonFunc();
+        }, 1);
+      }
+    }
+  }
+
+  prevPage() {
+    this.stepValues = [];
+    if (this.currentPage - 1 >= 0) {
+      this.currentPage--;
+
+      if (this.overviewMode || this.steps[this.currentPage] < 1) {
+        this.currentStep = 0;
+        this.overviewSwitchIcon("overview");
+      } else {
+        this.currentStep = this.steps[this.currentPage];
+        this.overviewSwitchIcon("panel");
+      }
+
+      document.getElementById("pageTextField").value = this.currentPage;
+    } else {
+      this.prevChapter();
+    }
+    this.retrieveJson();
+  }
+
+  prevChapter() {
+    if (this.currentChapter > 1) {
+      this.currentChapter--;
+      this.currentPage = this.chapters[this.currentChapter];
+      if (this.overviewMode || this.steps[this.currentPage] < 1) {
+        this.currentStep = 0;
+      } else {
+        this.currentStep = this.steps[this.currentPage];
+      }
+
+      document.getElementById("pageTextField").value = this.currentPage;
+    } else {
+      console.log("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
+    }
+  }
+
+  panelClickFunc() {
+    //var auxRect = document.getElementById("overview").getBoundingClientRect();
+    // var auxRect = document
+    //   .getElementById("frame-child")
+    //   .getBoundingClientRect();
+    // var y;
+    // var x;
+    // document.getElementById("readerGui").onclick = function clickEvent(e) {
+    //   x = e.clientX - auxRect.left; //x position within the element.
+    //   y = e.clientY - auxRect.top; //y position within the element.
+    //   console.log("x:" + x + "  |  y:" + y);
+    // };
   }
 
   overviewSwitchFunc() {
-    console.log("overview");
+    var switchState = "default";
+    if (this.steps[this.currentPage] < 1) {
+      var switchState = "unable";
+    } else {
+      this.overviewMode = !this.overviewMode;
+      if (this.overviewMode) {
+        var switchState = "overview";
+        this.updateStyle(this.stepValues[0]);
+        this.changeFrame([this.stepValues[0]]);
+        // hide away frame
+        document.getElementById("frame-child").style.opacity = 0;
+      } else {
+        this.updateStyle(this.stepValues[this.currentStep]);
+        document.getElementById("frame-child").style.opacity = 0.99;
+        this.changeFrame([this.stepValues[this.currentStep]]);
+        if (this.currentStep === 0) {
+          this.nextButtonFunc();
+        }
+      }
+    }
+    this.overviewSwitchIcon(switchState);
+  }
+
+  overviewSwitchIcon(state) {
+    if (state === "overview") {
+      document.getElementById("overviewIcon").src = "../assets/panel.png";
+    } else if (state === "unable") {
+      document.getElementById("overviewIcon").src = "../assets/unable.png";
+    } else {
+      document.getElementById("overviewIcon").src = "../assets/overview.png";
+    }
   }
 
   pageSelector() {
     document.querySelector("input").addEventListener("change", (e) => {
-      if (
-        parseInt(e.currentTarget.value) <
-        parseInt(reader.chapters[reader.currentchapter])
-      ) {
+      var i = parseInt(reader.currentChapter);
+
+      if (parseInt(e.currentTarget.value) < parseInt(reader.chapters[i])) {
         reader.currentPage = parseInt(e.currentTarget.value);
+        reader.overviewMode = false;
+        reader.overviewSwitchFunc();
+        reader.currentStep = 0;
+
+        reader.nextPage(parseInt(e.currentTarget.value));
       }
     });
   }
 
   setPageInputSize(amount) {
     if (parseInt(amount) < 10) {
-      document.getElementById("pageInput").style.width = "2rem";
-      document.getElementById("pageTextField").style.width = "0.5rem";
+      document.getElementById("pageInput").style.width = "2.42rem";
+      document.getElementById("pageTextField").style.width = "0.75rem";
       document.getElementById("pageTextField").maxLength = 1;
     } else if (parseInt(amount) > 9 && parseInt(amount) < 100) {
-      document.getElementById("pageInput").style.width = "3.2rem";
-      document.getElementById("pageTextField").style.width = "1.15rem";
+      document.getElementById("pageInput").style.width = "4rem";
+      document.getElementById("pageTextField").style.width = "1.45rem";
       document.getElementById("pageTextField").maxLength = 2;
     } else {
-      document.getElementById("pageInput").style.width = "4.2rem";
-      document.getElementById("pageTextField").style.width = "1.7rem";
+      document.getElementById("pageInput").style.width = "5.45rem";
+      document.getElementById("pageTextField").style.width = "2.17rem";
       document.getElementById("pageTextField").maxLength = 3;
     }
   }
 
   setDiv() {
-    var step= [0,0,0,0,0,0];
+    var step = [0, 0, 0, 0, 0, 0];
     var temp =
       '<div id="frame" data-x="' +
       step[1] +
@@ -194,7 +328,7 @@ class mangaReader {
       step[0] +
       "px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
       step[5] +
-      '); transform-style: preserve-3d;"><div id="frame-child" style="width: ' +
+      '); transition: all 200ms ease-in-out 0ms;transform-style: preserve-3d;"><div id="frame-child" style="transition: all 200ms ease-in-out 0ms;transform-style: preserve-3d;width: ' +
       step[3] +
       "px; height: " +
       step[4] +
@@ -203,45 +337,47 @@ class mangaReader {
   }
 
   changeFrame(step) {
-    document.getElementById("frame").dataX=step[1];
-    document.getElementById("frame").dataY=step[2];
-    document.getElementById("frame").dataZ=step[0];
-    document.getElementById("frame").scale=step[5];
-    document.getElementById("frame").style.transform='translate(-50%, -50%) translate3d(' +
-    step[1] +
-    "px, " +
-    step[2] +
-    "px, " +
-    step[0] +
-    "px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
-    step[5] +
-    ')';
+    document.getElementById("frame").dataX = step[1];
+    document.getElementById("frame").dataY = step[2];
+    document.getElementById("frame").dataZ = step[0];
+    document.getElementById("frame").scale = step[5];
+    document.getElementById("frame").style.transform =
+      "translate(-50%, -50%) translate3d(" +
+      step[1] +
+      "px, " +
+      step[2] +
+      "px, " +
+      step[0] +
+      "px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
+      step[5] +
+      ")";
 
-    document.getElementById("frame-child");
-    document.getElementById("frame-child").style.width=step[3];
-    document.getElementById("frame-child").style.width=step[4];
+    document.getElementById("frame-child").style.width =
+      parseInt(step[3] / 10) + "px";
+    document.getElementById("frame-child").style.height =
+      parseInt(step[4] / 10) + "px";
   }
 
   setOverview(src) {
-    var pageSize = (screen.height/3)-screen.height/25;
+    var pageSize = screen.height / 3 - screen.height / 25;
     var temp =
-      '<div id="overview" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
+      '<div id="overview" onclick="reader.panelClickFunc()" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
       src +
-      '" style="width: '+
-      (pageSize*2)+
-      'px; height: '+
-      (pageSize*3)+
+      '" style="width: ' +
+      pageSize * 2 +
+      "px; height: " +
+      pageSize * 3 +
       'px"></div>';
     document.getElementById("readerStyle").innerHTML += temp;
   }
 
   changeOverview(src) {
-    document.getElementById("pageImage").src=src;
+    document.getElementById("pageImage").src = src;
   }
 
   setGui() {
     var temp =
-      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;background-color: #b63333;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;"><img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button><button id="nextButton" onclick="reader.nextButtonFunc()" title="Next"></button><button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" ></button><div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left"><input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.25rem;text-align:right" title="Choose page">/<a id="pageAmount" title="Current page" ></a></div>';
+      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;"><img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button><button id="nextButton" onclick="reader.nextButtonFunc()" title="Next"></button><button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" ></button><div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left"><input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.4rem;text-align:right" title="Choose page">/<a id="pageAmount" title="Current page" ></a></div>';
     document.getElementById("readerGui").innerHTML = temp;
   }
 
@@ -255,7 +391,8 @@ class mangaReader {
       -parseInt(values[0]) +
       "px)";
     document.getElementById("readerStyle").style.transform = temp;
-    document.getElementById("mangaReader").style.transform='scale('+parseFloat(values[5])+')';
+    document.getElementById("mangaReader").style.transform =
+      "scale(" + parseFloat(values[5]) + ")";
   }
 
   onlyNumberKey(evt) {
