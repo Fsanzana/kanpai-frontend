@@ -1,14 +1,14 @@
 import './App.css'
 import ResponsiveAppBar from './components/appbar/ResponsiveAppBar.jsx'
 import Card from './components/card/Card.jsx'
-import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 function App() {
 
   return (
     <div className="App">
       <ResponsiveAppBar className="appbar"/>
-      <Box className='mangas'>
+      <Grid className='mangas' container justifyContent="center">
       <Card/>
       <Card/>
       <Card/>
@@ -23,8 +23,8 @@ function App() {
       <Card/>
       <Card/>
       <Card/>
-      
-      </Box>
+
+      </Grid>
       
     </div>
   )

@@ -12,6 +12,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+  
+const theme = createTheme ( {
+  palette: {
+    primary: {
+      main: '#a73030',
+    },
+    secondary: {
+      main: '#6c00b3',
+    },
+    background: {
+      default: '#1e1e1e',
+      paper: '#161313',
+    },
+  },
+  typography: {
+    fontFamily: 'Comic Neue',
+    fontWeightMedium: 600,
+  },
+});
 const pages = ['populares', 'nacionales', 'últimos'];
 const settings = ['Perfil', 'Cuenta', 'Biblioteca', 'Desloguear'];
 
@@ -35,11 +55,12 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" className="topbar" sx={{backgroundColor: "#2b2b2b"}}>
+    <ThemeProvider theme={theme}>
+    <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <a href="/" sx={{ display: { xs: 'flex', md: 'none' ,width: "60px", height: "80%"}, mr: 1 }} >         
-           <img src="src/assets/favicon.png" style={{width: "50px", height:"100%"}} />
+           <img src="src/assets/favicon.png" style={{width: "50px", height:"100%", ":hover":{filter: "drop-shadow(0 0 2em #646cffaa)"}}} />
           </a>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -68,24 +89,24 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none' }
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" >{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           
       
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex'} }}>
+          <Box sx={{ flexGrow: 1, marginLeft:"1.5rem",display: { xs: 'none', md: 'flex'} }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black',':hover':{bgColor:'black',color:'white'}, display: 'block'}}
               >
                 {page}
               </Button>
@@ -124,6 +145,7 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 }
 export default ResponsiveAppBar;
