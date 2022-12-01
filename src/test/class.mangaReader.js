@@ -236,23 +236,19 @@ class MangaReader {
     }
   }
 
-  panelClickFunc() {
-    var auxRect = document.getElementById("overview").getBoundingClientRect();
-    var auxRect = document
-      .getElementById("frame-child")
-      .getBoundingClientRect();
-    var y;
-    var x;
-    // document.onmousemove = function (e) {
-    //   var cursorX = e.pageX;
-    //   var cursorY = e.pageY;
-    //   console.log(cursorX);
-    // };
-    document.getElementById("readerGui").onclick = function clickEvent(e) {
-      x = e.clientX - auxRect.left; //x position within the element.
-      y = e.clientY - auxRect.top; //y position within the element.
-      //console.log("x:" + x + "  |  y:" + y);
-    };
+  pageSelector() {
+    document.getElementById("pageTextField").addEventListener("change", (e) => {
+      var i = parseInt(reader.currentChapter);
+
+      if (parseInt(e.currentTarget.value) < parseInt(reader.chapters[i])) {
+        reader.currentPage = parseInt(e.currentTarget.value);
+        reader.overviewMode = false;
+        reader.overviewSwitchFunc();
+        reader.currentStep = 0;
+
+        reader.nextPage(parseInt(e.currentTarget.value));
+      }
+    });
   }
 
   overviewSwitchFunc() {
@@ -295,10 +291,15 @@ class MangaReader {
   zoomFunc() {
     this.zoom = !this.zoom;
     if (this.zoom) {
+      this.moveImageFunc();
       document.getElementById("pageImage").draggable = false;
+      document.getElementById("zoomSwitch").title = "Close zoom";
       document.getElementById("zoomIcon").src = "../assets/close_zoom.png";
       this.showZoom("snuck");
     } else {
+      document.getElementById("overview").style.top = "0px";
+      document.getElementById("overview").style.left = "0px";
+      document.getElementById("zoomSwitch").title = "Zoom";
       document.getElementById("zoomIcon").src = "../assets/zoom.png";
       this.showZoom("return");
       document.getElementById("slider").value = 30;
@@ -358,19 +359,57 @@ class MangaReader {
     }
   }
 
-  pageSelector() {
-    document.getElementById("pageTextField").addEventListener("change", (e) => {
-      var i = parseInt(reader.currentChapter);
+  mousePosition;
+  offset = [0, 0];
+  isDown = false;
 
-      if (parseInt(e.currentTarget.value) < parseInt(reader.chapters[i])) {
-        reader.currentPage = parseInt(e.currentTarget.value);
-        reader.overviewMode = false;
-        reader.overviewSwitchFunc();
-        reader.currentStep = 0;
+  moveImageFunc() {
+    addEventListener(
+      "mousedown",
+      function (e) {
+        reader.isDown = true;
+        document.getElementById("overview").style.transition = "none";
+        reader.offset = [
+          document.getElementById("overview").offsetLeft - e.clientX,
+          document.getElementById("overview").offsetTop - e.clientY,
+        ];
+      },
+      true
+    );
 
-        reader.nextPage(parseInt(e.currentTarget.value));
-      }
-    });
+    document.addEventListener(
+      "mouseup",
+      function () {
+        reader.isDown = false;
+        document.getElementById("overview").style.transition =
+          "all 350ms ease-in-out 0ms";
+      },
+      true
+    );
+
+    document.addEventListener(
+      "mousemove",
+      function (event) {
+        event.preventDefault();
+        if (reader.isDown) {
+          reader.mousePosition = {
+            x: event.clientX,
+            y: event.clientY,
+          };
+          reader.movePageImage();
+        }
+      },
+      true
+    );
+  }
+
+  movePageImage() {
+    if (this.zoom) {
+      document.getElementById("overview").style.left =
+        this.mousePosition.x + this.offset[0] + "px";
+      document.getElementById("overview").style.top =
+        this.mousePosition.y + this.offset[1] + "px";
+    }
   }
 
   sliderFunc(scroll) {
@@ -472,7 +511,7 @@ class MangaReader {
   setOverview(src) {
     var pageSize = screen.height / 3 - screen.height / 25;
     var temp =
-      '<div id="overview" onclick="reader.panelClickFunc()" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="transition: all 350ms ease-in-out 0ms;position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
+      '<div id="overview" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="transition: all 350ms ease-in-out 0ms;position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
       src +
       '" style="width: ' +
       pageSize * 2 +
