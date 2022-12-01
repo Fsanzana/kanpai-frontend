@@ -8,6 +8,7 @@ class MangaReader {
   currentPage = 0;
 
   overviewMode = false;
+  zoom = false;
   src = "";
 
   constructor(src) {
@@ -132,6 +133,7 @@ class MangaReader {
 
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.currentStep = 0;
+        this.showZoom("show");
         this.overviewSwitchIcon("overview");
       } else {
         this.currentStep = 1;
@@ -150,6 +152,7 @@ class MangaReader {
       this.currentChapter++;
       this.currentPage = 0;
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
+        this.showZoom("show");
         this.currentStep = 0;
       } else {
         this.currentStep = 1;
@@ -202,6 +205,7 @@ class MangaReader {
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.currentStep = 0;
         this.overviewSwitchIcon("overview");
+        this.showZoom("show");
       } else {
         this.currentStep = this.steps[this.currentPage];
         this.overviewSwitchIcon("panel");
@@ -219,8 +223,10 @@ class MangaReader {
       this.currentChapter--;
       this.currentPage = this.chapters[this.currentChapter];
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
+        this.showZoom("show");
         this.currentStep = 0;
       } else {
+        this.showZoom("hide");
         this.currentStep = this.steps[this.currentPage];
       }
 
@@ -231,17 +237,22 @@ class MangaReader {
   }
 
   panelClickFunc() {
-    //var auxRect = document.getElementById("overview").getBoundingClientRect();
-    // var auxRect = document
-    //   .getElementById("frame-child")
-    //   .getBoundingClientRect();
-    // var y;
-    // var x;
-    // document.getElementById("readerGui").onclick = function clickEvent(e) {
-    //   x = e.clientX - auxRect.left; //x position within the element.
-    //   y = e.clientY - auxRect.top; //y position within the element.
-    //   console.log("x:" + x + "  |  y:" + y);
+    var auxRect = document.getElementById("overview").getBoundingClientRect();
+    var auxRect = document
+      .getElementById("frame-child")
+      .getBoundingClientRect();
+    var y;
+    var x;
+    // document.onmousemove = function (e) {
+    //   var cursorX = e.pageX;
+    //   var cursorY = e.pageY;
+    //   console.log(cursorX);
     // };
+    document.getElementById("readerGui").onclick = function clickEvent(e) {
+      x = e.clientX - auxRect.left; //x position within the element.
+      y = e.clientY - auxRect.top; //y position within the element.
+      //console.log("x:" + x + "  |  y:" + y);
+    };
   }
 
   overviewSwitchFunc() {
@@ -270,16 +281,85 @@ class MangaReader {
 
   overviewSwitchIcon(state) {
     if (state === "overview") {
+      this.showZoom("show");
       document.getElementById("overviewIcon").src = "../assets/panel.png";
     } else if (state === "unable") {
+      this.showZoom("show");
       document.getElementById("overviewIcon").src = "../assets/unable.png";
     } else {
+      this.showZoom("hide");
       document.getElementById("overviewIcon").src = "../assets/overview.png";
     }
   }
 
+  zoomFunc() {
+    this.zoom = !this.zoom;
+    if (this.zoom) {
+      document.getElementById("pageImage").draggable = false;
+      document.getElementById("zoomIcon").src = "../assets/close_zoom.png";
+      this.showZoom("snuck");
+    } else {
+      document.getElementById("zoomIcon").src = "../assets/zoom.png";
+      this.showZoom("return");
+      document.getElementById("slider").value = 30;
+      var aux =
+        "translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
+        1 +
+        ")";
+      document.getElementById("overview").style.transform = aux;
+    }
+  }
+
+  showZoom(show) {
+    if (show === "show") {
+      document.getElementById("zoomSwitch").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("zoomSwitch").style.marginBottom = "4rem";
+      }, 1);
+    } else if (show === "hide") {
+      document.getElementById("zoomSwitch").style.marginBottom = "10px";
+      setTimeout(() => {
+        document.getElementById("zoomSwitch").style.display = "none";
+      }, 500);
+    } else if (show === "snuck") {
+      document.getElementById("zoomSwitch").style.marginBottom = "10px";
+      document.getElementById("zoomSlider").style.marginBottom = "4rem";
+      document.getElementById("slider").style.height = "25rem";
+
+      document.getElementById("zoomSlider").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("overviewSwitch").style.display = "none";
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("prevButton").style.display = "none";
+      }, 500);
+      setTimeout(() => {
+        document.getElementById("zoomSlider").style.opacity = 1;
+      }, 1);
+      document.getElementById("overviewSwitch").style.opacity = 0;
+      document.getElementById("nextButton").style.opacity = 0;
+      document.getElementById("prevButton").style.opacity = 0;
+    } else {
+      document.getElementById("slider").style.height = "1rem";
+      document.getElementById("zoomSlider").style.marginBottom = "10px";
+      document.getElementById("zoomSwitch").style.marginBottom = "4rem";
+
+      document.getElementById("overviewSwitch").style.display = "block";
+      document.getElementById("nextButton").style.display = "block";
+      document.getElementById("prevButton").style.display = "block";
+      document.getElementById("zoomSlider").style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById("overviewSwitch").style.opacity = 1;
+        document.getElementById("nextButton").style.opacity = 1;
+        document.getElementById("prevButton").style.opacity = 1;
+      }, 1);
+      setTimeout(() => {
+        document.getElementById("zoomSlider").style.display = "none";
+      }, 500);
+    }
+  }
+
   pageSelector() {
-    document.querySelector("input").addEventListener("change", (e) => {
+    document.getElementById("pageTextField").addEventListener("change", (e) => {
       var i = parseInt(reader.currentChapter);
 
       if (parseInt(e.currentTarget.value) < parseInt(reader.chapters[i])) {
@@ -291,6 +371,37 @@ class MangaReader {
         reader.nextPage(parseInt(e.currentTarget.value));
       }
     });
+  }
+
+  sliderFunc(scroll) {
+    var slider = document.getElementById("slider");
+    if (this.zoom) {
+      if (scroll !== 0) {
+        var temp =
+          parseInt(document.getElementById("slider").value) + scroll * 10;
+        document.getElementById("slider").value = temp;
+        temp = parseInt(temp) / 10;
+        if (temp < 1) {
+          temp = 1;
+        }
+
+        var aux =
+          "translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
+          parseInt(temp) +
+          ")";
+        document.getElementById("overview").style.transform = aux;
+      }
+    }
+    slider.oninput = function () {
+      var scale = (parseInt(this.value) * parseInt(this.value)) / 1500;
+      scale++;
+
+      var aux =
+        "translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(" +
+        scale +
+        ")";
+      document.getElementById("overview").style.transform = aux;
+    };
   }
 
   setPageInputSize(amount) {
@@ -361,7 +472,7 @@ class MangaReader {
   setOverview(src) {
     var pageSize = screen.height / 3 - screen.height / 25;
     var temp =
-      '<div id="overview" onclick="reader.panelClickFunc()" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
+      '<div id="overview" onclick="reader.panelClickFunc()" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="transition: all 350ms ease-in-out 0ms;position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
       src +
       '" style="width: ' +
       pageSize * 2 +
@@ -377,7 +488,17 @@ class MangaReader {
 
   setGui() {
     var temp =
-      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;"><img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button><button id="nextButton" onclick="reader.nextButtonFunc()" title="Next"></button><button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" ></button><div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left"><input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.4rem;text-align:right" title="Choose page">/<a id="pageAmount" title="Current page" ></a></div>';
+      '<button id="zoomSwitch" onclick="reader.zoomFunc()" title="Zoom" style="position: absolute;margin-left: 10px;margin-bottom: 4rem;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer; transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      '<img id="zoomIcon" src="../assets/zoom.png" height="30rem"></button>' +
+      '<div id="zoomSlider" onclick="reader.sliderFunc(0)" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      '<input id="slider" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;" type="range" orient="vertical" data-vertical="true" min="1" max="150" value="30" class="slider"></div>' +
+      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      '<img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button>' +
+      '<button id="nextButton" onclick="reader.nextButtonFunc()" title="Next" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
+      '<button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
+      '<div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left">' +
+      '<input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.4rem;text-align:right" title="Choose page">/' +
+      '<a id="pageAmount" title="Current page" ></a></div>';
     document.getElementById("readerGui").innerHTML = temp;
   }
 

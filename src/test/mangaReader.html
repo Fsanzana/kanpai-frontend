@@ -21,6 +21,36 @@
         padding: 0px;
       }
 
+      #zoomSlider {
+        display: none;
+        position: absolute;
+        margin-left: 10px;
+        margin-bottom: 4rem;
+        bottom: 0px;
+        border-radius: 2rem;
+
+        background-color: #b63333;
+
+        inline-size: auto;
+        padding: 1rem 0.2rem;
+        cursor: pointer;
+        opacity: 0;
+      }
+
+      #slider {
+        height: 25rem;
+      }
+
+      .slider {
+        color: #ffffff;
+        width: 1rem;
+        left: 1rem;
+        padding: 0.74rem;
+        -webkit-appearance: slider-vertical;
+        transition: opacity 0.2s;
+        cursor: pointer;
+      }
+
       #prevButton {
         position: absolute;
         margin-left: 10px;
@@ -72,6 +102,18 @@
       }
 
       #overviewSwitch:active {
+        background-color: #cacaca;
+      }
+
+      #zoomSwitch {
+        background-color: #b63333;
+      }
+
+      #zoomSwitch:hover {
+        background-color: #ffffff;
+      }
+
+      #zoomSwitch:active {
         background-color: #cacaca;
       }
 
@@ -128,6 +170,12 @@
         if (charCode === 39) {
           reader.nextButtonFunc();
         }
+      };
+
+      addEventListener("wheel", (event) => {});
+
+      onwheel = (event) => {
+        reader.sliderFunc(event.deltaY * -0.002);
       };
     </script>
   </body>
