@@ -11,13 +11,39 @@ class MangaReader {
   zoom = false;
   src = "";
 
-  constructor(src) {
-    this.src = src;
+  constructor() {
     this.setupReader();
+  }
+
+  getUrlData() {
+    //change the i starting point to get only the source
+    this.src = "./manga/" + window.location.href.split("/")[6] + "/";
+
+    this.currentChapter = parseInt(
+      window.location.href.split("chapter-")[1].split("/")[0]
+    );
+
+    this.currentPage = parseInt(
+      window.location.href.split("page-")[1].split("/")[0]
+    );
+  }
+
+  updateUrl() {
+    var aux =
+      "mangareader.html#" +
+      this.src.split("./manga")[1] +
+      "chapter-" +
+      this.currentChapter +
+      "/page-" +
+      this.currentPage;
+    location.assign(aux);
   }
 
   setupReader() {
     //ONLY ONES THAT ADAPT ON CHANGE ARE PERSPECTIVE AND SCALE
+
+    this.getUrlData();
+
     var temp =
       "z-index: 0; position: absolute; transform-origin: left top; transition: all 250ms ease-in-out 125ms; transform-style: preserve-3d; top: 50%; left: 50%;";
     temp += "perspective: " + 1000 + "px;";
@@ -145,6 +171,7 @@ class MangaReader {
       this.nextChapter();
     }
     this.retrieveJson();
+    this.updateUrl();
   }
 
   nextChapter() {
@@ -160,7 +187,7 @@ class MangaReader {
 
       document.getElementById("pageTextField").value = this.currentPage;
     } else {
-      console.log("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
+      alert("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
     }
   }
 
@@ -216,6 +243,7 @@ class MangaReader {
       this.prevChapter();
     }
     this.retrieveJson();
+    this.updateUrl();
   }
 
   prevChapter() {
@@ -232,7 +260,7 @@ class MangaReader {
 
       document.getElementById("pageTextField").value = this.currentPage;
     } else {
-      console.log("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
+      alert("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
     }
   }
 
@@ -519,6 +547,25 @@ class MangaReader {
       pageSize * 3 +
       'px"></div>';
     document.getElementById("readerStyle").innerHTML += temp;
+
+    if (src.split("/").pop().split(".").pop() !== "jpg") {
+      document.getElementById("pageImage").src = "../assets/loading_failed.png";
+      setTimeout(() => {
+        if (
+          document
+            .getElementById("pageImage")
+            .src.split("/")
+            .pop()
+            .split(".")
+            .pop() === "png"
+        ) {
+          document.getElementById("readerGui").style.opacity = 0;
+          setTimeout(() => {
+            document.getElementById("readerGui").style.display = "none";
+          }, 500);
+        }
+      }, 500);
+    }
   }
 
   changeOverview(src) {
