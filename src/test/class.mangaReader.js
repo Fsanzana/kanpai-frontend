@@ -11,6 +11,8 @@ class MangaReader {
   zoom = false;
   src = "";
 
+  scaleFactor = 0;
+
   constructor() {
     this.setupReader();
   }
@@ -103,11 +105,11 @@ class MangaReader {
                 } else {
                   reader.stepValues[i + 1] = [
                     value.panels[i].id,
-                    value.panels[i].dataX,
-                    value.panels[i].dataY,
+                    value.panels[i].dataX * reader.scaleFactor,
+                    value.panels[i].dataY * reader.scaleFactor,
                     value.panels[i].width,
                     value.panels[i].height,
-                    value.panels[i].dataScale,
+                    value.panels[i].dataScale * reader.scaleFactor,
                   ];
                 }
               }
@@ -131,6 +133,8 @@ class MangaReader {
       } else {
         if (this.currentStep < this.steps[this.currentPage]) {
           this.currentStep++;
+          document.getElementById("prevButton").style.backgroundImage =
+            "url(../assets/arrow_left.png)";
         } else {
           this.nextPage(this.currentPage + 1);
         }
@@ -155,6 +159,8 @@ class MangaReader {
   nextPage(nextPage) {
     this.stepValues = [];
     if (nextPage < this.chapters[this.currentChapter] + 1) {
+      document.getElementById("prevButton").style.backgroundImage =
+        "url(../assets/arrow_left.png)";
       this.currentPage = nextPage;
 
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
@@ -178,16 +184,21 @@ class MangaReader {
     if (this.currentChapter < this.chapters.length - 1) {
       this.currentChapter++;
       this.currentPage = 0;
+
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
-        this.showZoom("show");
         this.currentStep = 0;
+        this.showZoom("show");
+        this.overviewSwitchIcon("overview");
       } else {
         this.currentStep = 1;
+        this.overviewSwitchIcon("panel");
       }
 
       document.getElementById("pageTextField").value = this.currentPage;
     } else {
-      alert("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
+      document.getElementById("nextButton").style.backgroundImage =
+        "url(../assets/unable_right.png)";
+      this.noMoreBox();
     }
   }
 
@@ -203,18 +214,20 @@ class MangaReader {
       } else {
         if (this.currentStep > 0) {
           this.currentStep--;
+          document.getElementById("nextButton").style.backgroundImage =
+            "url(../assets/arrow_right.png)";
         } else {
           this.prevPage();
         }
       }
     }
 
-    //ITEM 1 OF NEXT PAGE ALWAYS READS ITEM 1 OF LAST PAGE, DON´T KNOW WHY.
-
     if (!this.overviewMode) {
       if (this.stepValues[this.currentStep] !== undefined) {
-        this.updateStyle(this.stepValues[this.currentStep]);
-        this.changeFrame(this.stepValues[this.currentStep]);
+        setTimeout(() => {
+          this.updateStyle(this.stepValues[this.currentStep]);
+          this.changeFrame(this.stepValues[this.currentStep]);
+        }, 1);
       } else {
         this.currentStep--;
         setTimeout(() => {
@@ -228,6 +241,8 @@ class MangaReader {
     this.stepValues = [];
     if (this.currentPage - 1 >= 0) {
       this.currentPage--;
+      document.getElementById("nextButton").style.backgroundImage =
+        "url(../assets/arrow_right.png)";
 
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.currentStep = 0;
@@ -260,7 +275,10 @@ class MangaReader {
 
       document.getElementById("pageTextField").value = this.currentPage;
     } else {
-      alert("NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE");
+      document.getElementById("prevButton").style.backgroundImage =
+        "url(../assets/unable_left.png)";
+
+      this.noMoreBox();
     }
   }
 
@@ -316,6 +334,20 @@ class MangaReader {
     }
   }
 
+  noMoreBox() {
+    document.getElementById("noMoreBox").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("noMoreBox").style.opacity = 1;
+    }, 1);
+  }
+
+  closeNoMoreBox() {
+    document.getElementById("noMoreBox").style.opacity = 0;
+    setTimeout(() => {
+      document.getElementById("noMoreBox").style.display = "none";
+    }, 500);
+  }
+
   zoomFunc() {
     this.zoom = !this.zoom;
     if (this.zoom) {
@@ -323,12 +355,14 @@ class MangaReader {
       document.getElementById("pageImage").draggable = false;
       document.getElementById("zoomSwitch").title = "Close zoom";
       document.getElementById("zoomIcon").src = "../assets/close_zoom.png";
+      document.getElementById("readerGui").style.cursor = "grab";
       this.showZoom("snuck");
     } else {
       document.getElementById("overview").style.top = "0px";
       document.getElementById("overview").style.left = "0px";
       document.getElementById("zoomSwitch").title = "Zoom";
       document.getElementById("zoomIcon").src = "../assets/zoom.png";
+      document.getElementById("readerGui").style.cursor = "default";
       this.showZoom("return");
       document.getElementById("slider").value = 30;
       var aux =
@@ -489,6 +523,12 @@ class MangaReader {
 
   setDiv() {
     var step = [0, 0, 0, 0, 0, 0];
+    var sizer;
+    if (screen.height > screen.width) {
+      sizer = screen.height / 2;
+    } else {
+      sizer = screen.width / 2;
+    }
     var temp =
       '<div id="frame" data-x="' +
       step[1] +
@@ -510,7 +550,9 @@ class MangaReader {
       step[3] +
       "px; height: " +
       step[4] +
-      'px; border: 3000px solid #303030; opacity: 0.99;"></div></div>';
+      "px; border: " +
+      sizer +
+      'px solid #303030; opacity: 0.99;"></div></div>';
     document.getElementById("readerStyle").innerHTML += temp;
   }
 
@@ -537,7 +579,14 @@ class MangaReader {
   }
 
   setOverview(src) {
-    var pageSize = screen.height / 3 - screen.height / 25;
+    var pageSize;
+    if (screen.height > screen.width) {
+      pageSize = screen.width / 2;
+    } else {
+      pageSize = screen.height / 3 - screen.height / 25;
+    }
+
+    this.scaleFactor = parseInt(pageSize) / 316.8;
     var temp =
       '<div id="overview" class="active" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="xyz" data-rel-position="absolute" data-rel-x="0" data-rel-y="0" data-rel-z="0" data-rel-rotate-x="0" data-rel-rotate-y="0" data-rel-rotate-z="0" style="transition: all 350ms ease-in-out 0ms;position: absolute; transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); transform-style: preserve-3d;"><img id="pageImage" src="' +
       src +
@@ -573,18 +622,40 @@ class MangaReader {
   }
 
   setGui() {
+    var aux =
+      //NO MORE BOX
+      '<div id="noMoreBox" style="position: absolute;border-radius: 2rem;background-color: #303030;padding: 0.35rem 0.5rem;width: 15rem;height: 9rem;left: 50%;top: 50%;margin-left: -7.5rem;margin-top: -4.5rem;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;display: none;opacity: 0;z-index: 2">' +
+      //CLOSE BOX
+      '<button id="closeButton" title="Cerrar Alerta" onclick="reader.closeNoMoreBox();" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;position: absolute;border: none;background-color: #303030;border-radius: 2rem;right: -0.5rem;padding: 0.1rem 0.1rem;margin-top: -1rem;cursor: pointer;">' +
+      '<img id="closeButtonIcon" src="../assets/close_icon.png" height="30rem"></button>' +
+      '<h5 style="margin: auto;margin-top: 8%;text-align: center;color: #ffffff;">NO HAY MAS MANGA PARA CARGAR, ELIGE UNA OPCION</h5>' +
+      //HOME BUTTON
+      '<button id="homeButton" title="Volver al Home" onclick="alert(' +
+      "'NO MORE CHAPTERS TO LOAD, BACK TO HOME PAGE'" +
+      ');" style="position: absolute;left: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
+      '<img id="homeButtonIcon" src="../assets/home.png" height="30rem"></button>' +
+      //BACK TO MANGA BUTTON
+      '<button id="backButton" title="Volver Atrás" onclick="alert(' +
+      "'NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE'" +
+      ');" style="position: absolute;right: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
+      '<img id="backButtonIcon" src="../assets/back.png" height="30rem"></button></div>';
     var temp =
-      '<button id="zoomSwitch" onclick="reader.zoomFunc()" title="Zoom" style="position: absolute;margin-left: 10px;margin-bottom: 4rem;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer; transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
-      '<img id="zoomIcon" src="../assets/zoom.png" height="30rem"></button>' +
-      '<div id="zoomSlider" onclick="reader.sliderFunc(0)" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      //ZOOM
+      '<button id="zoomSwitch" onclick="reader.zoomFunc()" title="Zoom" style="position: absolute;margin-left: 10px;margin-bottom: 4rem;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer; transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;cursor:default">' +
+      '<img id="zoomIcon" src="../assets/zoom.png" height="30rem" style="cursor:pointer"></button>' +
+      '<div id="zoomSlider" data-z="2" onclick="reader.sliderFunc(0)" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
       '<input id="slider" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;" type="range" orient="vertical" data-vertical="true" min="1" max="150" value="30" class="slider"></div>' +
+      //OVERVIEW SWITCH
       '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
       '<img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button>' +
+      //NEXT PREV BUTTON
       '<button id="nextButton" onclick="reader.nextButtonFunc()" title="Next" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
       '<button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
+      //PAGE INPUT
       '<div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left">' +
-      '<input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.4rem;text-align:right" title="Choose page">/' +
+      '<input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.25rem;text-align:right" title="Choose page">/' +
       '<a id="pageAmount" title="Current page" ></a></div>';
+    document.getElementById("noMoreBoxMEME").innerHTML += aux;
     document.getElementById("readerGui").innerHTML = temp;
   }
 

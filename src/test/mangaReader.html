@@ -2,6 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1"
+    />
     <script type="text/javascript" src="class.MangaReader.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
@@ -15,7 +19,7 @@
       }
 
       body {
-        font-family: "Patrick Hand", cursive;
+        font-family: "Comic Neue", cursive;
         background-color: #303030;
         margin: 0px;
         padding: 0px;
@@ -38,7 +42,7 @@
       }
 
       #slider {
-        height: 25rem;
+        height: 8rem;
       }
 
       .slider {
@@ -136,12 +140,49 @@
       #pageTextField {
         font-family: "Comic Neue", cursive;
       }
+
+      #homeButton {
+        background-color: #b63333;
+      }
+
+      #homeButton:hover {
+        background-color: #ffffff;
+      }
+
+      #homeButton:active {
+        background-color: #cacaca;
+      }
+
+      #backButton {
+        background-color: #b63333;
+      }
+
+      #backButton:hover {
+        background-color: #ffffff;
+      }
+
+      #backButton:active {
+        background-color: #cacaca;
+      }
+
+      #closeButton {
+        transform: scale(1);
+      }
+
+      #closeButton:hover {
+        transform: scale(1.5);
+      }
+
+      #closeButton:active {
+        transform: scale(1);
+      }
     </style>
   </head>
 
   <script type="text/javascript"></script>
 
-  <body>
+  <body id="body">
+    <div id="noMoreBoxMEME"></div>
     <div
       id="readerGui"
       style="
