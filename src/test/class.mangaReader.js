@@ -337,7 +337,7 @@ class MangaReader {
   noMoreBox() {
     document.getElementById("noMoreBox").style.display = "block";
     setTimeout(() => {
-      document.getElementById("noMoreBox").style.opacity = 1;
+      document.getElementById("noMoreBox").style.opacity = 0.95;
     }, 1);
   }
 
@@ -387,7 +387,7 @@ class MangaReader {
     } else if (show === "snuck") {
       document.getElementById("zoomSwitch").style.marginBottom = "10px";
       document.getElementById("zoomSlider").style.marginBottom = "4rem";
-      document.getElementById("slider").style.height = "25rem";
+      document.getElementById("slider").style.height = "8rem";
 
       document.getElementById("zoomSlider").style.display = "block";
       setTimeout(() => {
@@ -626,7 +626,7 @@ class MangaReader {
       //NO MORE BOX
       '<div id="noMoreBox" style="position: absolute;border-radius: 2rem;background-color: #303030;padding: 0.35rem 0.5rem;width: 15rem;height: 9rem;left: 50%;top: 50%;margin-left: -7.5rem;margin-top: -4.5rem;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;display: none;opacity: 0;z-index: 2">' +
       //CLOSE BOX
-      '<button id="closeButton" title="Cerrar Alerta" onclick="reader.closeNoMoreBox();" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;position: absolute;border: none;background-color: #303030;border-radius: 2rem;right: -0.5rem;padding: 0.1rem 0.1rem;margin-top: -1rem;cursor: pointer;">' +
+      '<button id="closeButton" title="Cerrar Alerta" onclick="reader.closeNoMoreBox();" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;position: absolute;border: none;background-color: #303030;border-radius: 2rem;right: -0.5rem;height: 2rem;width: 2rem;padding: 0.1rem 0.1rem;margin-top: -1rem;display: flex;justify-content: center;cursor: pointer;">' +
       '<img id="closeButtonIcon" src="../assets/close_icon.png" height="30rem"></button>' +
       '<h5 style="margin: auto;margin-top: 8%;text-align: center;color: #ffffff;">NO HAY MAS MANGA PARA CARGAR, ELIGE UNA OPCION</h5>' +
       //HOME BUTTON
