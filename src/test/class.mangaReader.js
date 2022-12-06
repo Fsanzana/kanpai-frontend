@@ -28,6 +28,15 @@ class MangaReader {
     this.currentPage = parseInt(
       window.location.href.split("page-")[1].split("/")[0]
     );
+
+    this.updateTitle();
+  }
+
+  updateTitle() {
+    document.title =
+      window.location.href.split("/")[6].replaceAll("-", "\xa0") +
+      "\xa0" +
+      this.currentChapter;
   }
 
   updateUrl() {
@@ -68,6 +77,9 @@ class MangaReader {
     this.setOverview(this.src);
     //SET STEPS
     this.retrieveJson();
+
+    //ESTO NO LO ESTA AGARRANDO NSE PQ
+    document.getElementById("chapterSelect").value = this.currentChapter;
   }
 
   //JSON JSON JSON
@@ -79,6 +91,8 @@ class MangaReader {
       for (var j = 0; j < data.length; j++) {
         // FILL chapters ARRAY WHITH PAGE AMOUNTS
         reader.chapters[data[j].chapter] = data[j].pages.length - 1;
+
+        reader.setChapterSelect(data[j].title, j + 1);
 
         // DO ONLY IF CURRENT CHAPTER
         if (parseInt(data[j].chapter) === parseInt(reader.currentChapter)) {
@@ -183,6 +197,7 @@ class MangaReader {
   nextChapter() {
     if (this.currentChapter < this.chapters.length - 1) {
       this.currentChapter++;
+      this.updateTitle();
       this.currentPage = 0;
 
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
@@ -200,6 +215,13 @@ class MangaReader {
         "url(../assets/unable_right.png)";
       this.noMoreBox();
     }
+    document.getElementById("chapterSelect").value = this.currentChapter;
+  }
+
+  nextChapterButton() {
+    this.nextChapter();
+    this.retrieveJson();
+    this.updateUrl();
   }
 
   //PREV SLIDE / PAGE
@@ -264,6 +286,7 @@ class MangaReader {
   prevChapter() {
     if (this.currentChapter > 1) {
       this.currentChapter--;
+      this.updateTitle();
       this.currentPage = this.chapters[this.currentChapter];
       if (this.overviewMode || this.steps[this.currentPage] < 1) {
         this.showZoom("show");
@@ -279,6 +302,47 @@ class MangaReader {
         "url(../assets/unable_left.png)";
 
       this.noMoreBox();
+    }
+    document.getElementById("chapterSelect").value = this.currentChapter;
+  }
+
+  prevChapterButton() {
+    this.prevChapter();
+    this.retrieveJson();
+    this.updateUrl();
+  }
+
+  selectorIndex = 1;
+
+  setChapterSelect(title, chapter) {
+    if (chapter === this.selectorIndex) {
+      var temp =
+        '<option value="' +
+        chapter +
+        '">#' +
+        chapter +
+        " - " +
+        title +
+        "</option>";
+      this.selectorIndex++;
+      document.getElementById("chapterSelect").innerHTML += temp;
+    }
+  }
+
+  chapterSelector(chapter) {
+    if (this.currentChapter !== chapter) {
+      if (!this.overviewMode) {
+        this.overviewSwitchFunc();
+      }
+      this.currentChapter = chapter;
+      this.currentPage = 0;
+      this.currentStep = 0;
+      this.retrieveJson();
+      this.updateUrl();
+      document.getElementById("chapterSelect").value = this.currentChapter;
+
+      this.updateTitle();
+      document.getElementById("pageTextField").value = this.currentPage;
     }
   }
 
@@ -304,12 +368,14 @@ class MangaReader {
     } else {
       this.overviewMode = !this.overviewMode;
       if (this.overviewMode) {
+        this.showZoom("show");
         var switchState = "overview";
         this.updateStyle(this.stepValues[0]);
         this.changeFrame([this.stepValues[0]]);
         // hide away frame
         document.getElementById("frame-child").style.opacity = 0;
       } else {
+        this.showZoom("hide");
         this.updateStyle(this.stepValues[this.currentStep]);
         document.getElementById("frame-child").style.opacity = 0.99;
         this.changeFrame([this.stepValues[this.currentStep]]);
@@ -353,7 +419,7 @@ class MangaReader {
     if (this.zoom) {
       this.moveImageFunc();
       document.getElementById("pageImage").draggable = false;
-      document.getElementById("zoomSwitch").title = "Close zoom";
+      document.getElementById("zoomSwitch").title = "Cerrar zoom";
       document.getElementById("zoomIcon").src = "../assets/close_zoom.png";
       document.getElementById("readerGui").style.cursor = "grab";
       this.showZoom("snuck");
@@ -375,11 +441,13 @@ class MangaReader {
 
   showZoom(show) {
     if (show === "show") {
+      document.getElementById("navBar").style.top = "-0.3rem";
       document.getElementById("zoomSwitch").style.display = "block";
       setTimeout(() => {
         document.getElementById("zoomSwitch").style.marginBottom = "4rem";
       }, 1);
     } else if (show === "hide") {
+      document.getElementById("navBar").style.top = "-2.3rem";
       document.getElementById("zoomSwitch").style.marginBottom = "10px";
       setTimeout(() => {
         document.getElementById("zoomSwitch").style.display = "none";
@@ -582,6 +650,12 @@ class MangaReader {
     var pageSize;
     if (screen.height > screen.width) {
       pageSize = screen.width / 2;
+      document.getElementById("prevChapter").innerHTML = "<";
+      document.getElementById("nextChapter").innerHTML = ">";
+      document.getElementById("prevChapter").style.width = "2rem";
+      document.getElementById("nextChapter").style.width = "2rem";
+      document.getElementById("chapterSelect").style.width = "10rem";
+      document.getElementById("chapterSelect").style.marginRight = "-5rem";
     } else {
       pageSize = screen.height / 3 - screen.height / 25;
     }
@@ -613,7 +687,7 @@ class MangaReader {
             document.getElementById("readerGui").style.display = "none";
           }, 500);
         }
-      }, 500);
+      }, 1000);
     }
   }
 
@@ -626,36 +700,44 @@ class MangaReader {
       //NO MORE BOX
       '<div id="noMoreBox" style="position: absolute;border-radius: 2rem;background-color: #303030;padding: 0.35rem 0.5rem;width: 15rem;height: 9rem;left: 50%;top: 50%;margin-left: -7.5rem;margin-top: -4.5rem;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;display: none;opacity: 0;z-index: 2">' +
       //CLOSE BOX
-      '<button id="closeButton" title="Cerrar Alerta" onclick="reader.closeNoMoreBox();" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;position: absolute;border: none;background-color: #303030;border-radius: 2rem;right: -0.5rem;height: 2rem;width: 2rem;padding: 0.1rem 0.1rem;margin-top: -1rem;display: flex;justify-content: center;cursor: pointer;">' +
+      '<button id="closeButton" title="Cerrar alerta" onclick="reader.closeNoMoreBox();" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;position: absolute;border: none;background-color: #303030;border-radius: 2rem;right: -0.5rem;height: 2rem;width: 2rem;padding: 0.1rem 0.1rem;margin-top: -1rem;display: flex;justify-content: center;cursor: pointer;">' +
       '<img id="closeButtonIcon" src="../assets/close_icon.png" height="30rem"></button>' +
       '<h5 style="margin: auto;margin-top: 8%;text-align: center;color: #ffffff;">NO HAY MAS MANGA PARA CARGAR, ELIGE UNA OPCION</h5>' +
       //HOME BUTTON
-      '<button id="homeButton" title="Volver al Home" onclick="alert(' +
-      "'NO MORE CHAPTERS TO LOAD, BACK TO HOME PAGE'" +
+      '<button id="homeButton" title="Volver al home" onclick="alert(' +
+      "'BACK TO HOME PAGE'" +
       ');" style="position: absolute;left: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
       '<img id="homeButtonIcon" src="../assets/home.png" height="30rem"></button>' +
       //BACK TO MANGA BUTTON
-      '<button id="backButton" title="Volver Atrás" onclick="alert(' +
-      "'NO MORE CHAPTERS TO LOAD, BACK TO MANGA PAGE'" +
+      '<button id="backButton" title="Volver atrás" onclick="alert(' +
+      "'BACK TO MANGA PAGE'" +
       ');" style="position: absolute;right: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
       '<img id="backButtonIcon" src="../assets/back.png" height="30rem"></button></div>';
     var temp =
+      //CHAPTER NAVIGATION BAR
+      '<div id="navBar" style="position: absolute;background-color: #cacaca;padding: 0.35rem 0.5rem;width: 100%;height: 1.2rem;left: -0.3rem;top: -0.3rem;border: 0.3rem solid #303030;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      '<button id="backButton" onclick="alert(' +
+      "'BACK TO MANGA PAGE'" +
+      ');" title="Volver al manga" style="position: absolute;left: -0.1rem;font-size: 1rem;width: 2rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><</button>' +
+      '<select id="chapterSelect" onclick="reader.chapterSelector(this.value)" title="Selecionar capitulo" style="position: absolute;right: 50%;margin-right: -5.5rem;font-size: 1rem;width: 11rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;font-family: &quot;Comic Neue&quot;, cursive;" comic=""></select>' +
+      '<button id="prevChapter" onclick="reader.prevChapterButton()" title="Capitulo previo" style="position: absolute;left: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><- previo</button>' +
+      '<button id="nextChapter" onclick="reader.nextChapterButton()" title="Próximo capitulo" style="position: absolute;right: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;">siguiente -></button></div>' +
       //ZOOM
       '<button id="zoomSwitch" onclick="reader.zoomFunc()" title="Zoom" style="position: absolute;margin-left: 10px;margin-bottom: 4rem;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer; transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;cursor:default">' +
       '<img id="zoomIcon" src="../assets/zoom.png" height="30rem" style="cursor:pointer"></button>' +
       '<div id="zoomSlider" data-z="2" onclick="reader.sliderFunc(0)" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
       '<input id="slider" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;" type="range" orient="vertical" data-vertical="true" min="1" max="150" value="30" class="slider"></div>' +
       //OVERVIEW SWITCH
-      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Switch view" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
+      '<button id="overviewSwitch" onclick="reader.overviewSwitchFunc()" title="Cambiar vista" style="position: absolute;margin-left: 10px;margin-bottom: 10px;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
       '<img id="overviewIcon" src="../assets/overview.png" height="30rem"/></button>' +
       //NEXT PREV BUTTON
-      '<button id="nextButton" onclick="reader.nextButtonFunc()" title="Next" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
-      '<button id="prevButton" onclick="reader.prevButtonFunc()" title="Previous" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
+      '<button id="nextButton" onclick="reader.nextButtonFunc()" title="Siguiente" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
+      '<button id="prevButton" onclick="reader.prevButtonFunc()" title="Previo" style="transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;"></button>' +
       //PAGE INPUT
       '<div id="pageInput" style="cursor: pointer;display: flex;height: fit-content;position: absolute;align-items: center;margin-right: 10px;margin-bottom: 10px;bottom:0px;right: 0px;border-radius: 2rem;background-color: #b63333;border: none;padding: 0rem 0.4rem;width: 3.2rem;background-position: center;background-size: contain;font-size: 1.25rem;text-align:left">' +
-      '<input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.25rem;text-align:right" title="Choose page">/' +
-      '<a id="pageAmount" title="Current page" ></a></div>';
-    document.getElementById("noMoreBoxMEME").innerHTML += aux;
+      '<input id="pageTextField" type="text" onkeypress="return reader.onlyNumberKey(event)" onkeydown="reader.pageSelector(this)" maxlength="3" value="0" max="999" min="0" style="color:#303030;width: 1.15rem;align-items: center;background-color:transparent;border: none;font-size: 1.25rem;text-align:right" title="Selecciona página">/' +
+      '<a id="pageAmount" title="Páginas del capitulo actual" ></a></div>';
+    document.getElementById("noMoreBoxDiv").innerHTML += aux;
     document.getElementById("readerGui").innerHTML = temp;
   }
 

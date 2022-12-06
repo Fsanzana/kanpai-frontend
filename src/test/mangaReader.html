@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Kanpai Manga Reader</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -154,6 +155,7 @@
       }
 
       #backButton {
+        font-family: "Comic Neue", cursive;
         background-color: #b63333;
       }
 
@@ -176,13 +178,51 @@
       #closeButton:active {
         transform: scale(1);
       }
+
+      #prevChapter {
+        font-family: "Comic Neue", cursive;
+        background-color: #cacaca;
+      }
+
+      #prevChapter:hover {
+        background-color: #ffffff;
+      }
+
+      #prevChapter:active {
+        background-color: #b63333;
+      }
+
+      #nextChapter {
+        font-family: "Comic Neue", cursive;
+        background-color: #cacaca;
+      }
+
+      #nextChapter:hover {
+        background-color: #ffffff;
+      }
+
+      #nextChapter:active {
+        background-color: #b63333;
+      }
+
+      #chapterSelect {
+        background-color: #cacaca;
+      }
+
+      #chapterSelect:hover {
+        background-color: #ffffff;
+      }
+
+      #chapterSelect:active {
+        background-color: #b63333;
+      }
     </style>
   </head>
 
   <script type="text/javascript"></script>
 
   <body>
-    <div id="noMoreBoxMEME"></div>
+    <div id="noMoreBoxDiv"></div>
     <div
       id="readerGui"
       style="

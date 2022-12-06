@@ -1,6 +1,7 @@
 [
   {
     "chapter": "1",
+    "title": "Vol.1 chapter 1",
     "pages": [
       {
         "page": "0",
@@ -575,6 +576,7 @@
   },
   {
     "chapter": "2",
+    "title": "Vol.1 chapter 2",
     "pages": [
       {
         "page": "0",
@@ -1158,6 +1160,7 @@
   },
   {
     "chapter": "3",
+    "title": "Vol.1 chapter 3",
     "pages": [
       {
         "page": "0",
