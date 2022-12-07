@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
   
@@ -56,6 +57,8 @@ function ResponsiveAppBar() {
 
   return (
     <ThemeProvider theme={theme}>
+    <CssBaseline />
+
     <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
