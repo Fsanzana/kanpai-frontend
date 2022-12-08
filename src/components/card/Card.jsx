@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: "0.5rem",
     marginRight: "0.5rem",
     marginLeft: "0.5rem",
+    border: "0.1px solid #303030",
 
     "&:after": {
       content: '""',

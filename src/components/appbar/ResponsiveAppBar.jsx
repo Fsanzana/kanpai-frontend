@@ -34,7 +34,7 @@ const theme = createTheme({
   },
 });
 const pages = ["populares", "nacionales", "últimos"];
-const settings = ["Perfil", "Cuenta", "Biblioteca", "Desloguear"];
+const settings = ["Perfil", "Cuenta", "Mi Biblioteca", "Cerrar Sesión"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
