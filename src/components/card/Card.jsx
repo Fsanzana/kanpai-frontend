@@ -13,17 +13,19 @@ import { useCoverCardMediaStyles } from "@mui-treasury/styles/cardMedia/cover";
 const descripcion =
   "Hitori Bocchi es una joven que sufre de Taijin kyofusho (una variante de fobia social), lo que le impide hablarle a otras personas. Al entrar a la escuela secundaria, su única amiga le dijo que no podrían seguir siendo amigas hasta que Bocchi consiguiera hacerse amiga de todos sus nuevos compañeros de clase.";
 
+const image = "src/assets/bocchi.jpeg";
+
 const useStyles = makeStyles(() => ({
   card: {
     borderRadius: "0.5rem",
     boxShadow: "none",
     position: "relative",
-    minWidth: 190,
-    minHeight: 285,
-    marginTop: "0.5rem",
-    marginBottom: "0.5rem",
-    marginRight: "0.5rem",
-    marginLeft: "0.5rem",
+    minWidth: 200,
+    minHeight: 300,
+    marginTop: "1rem",
+    marginBottom: "1rem",
+    marginRight: "1rem",
+    marginLeft: "1rem",
     border: "0.1px solid #303030",
 
     "&:after": {
@@ -53,7 +55,7 @@ export const MangaCard = React.memo(function GalaxyCard() {
       <CardActionArea style={{ height: "100%" }}>
         <Tooltip title={descripcion} sx={{ maxWidth: 245 }}>
           <CardContent>
-            <CardMedia classes={mediaStyles} image={"src/assets/bocchi.jpeg"} />
+            <CardMedia classes={mediaStyles} image={image} />
             <Box py={3} px={2} className={styles.content}>
               <Info useStyles={useGalaxyInfoStyles}>
                 <InfoTitle

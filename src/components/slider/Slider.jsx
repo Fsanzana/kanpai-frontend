@@ -84,7 +84,7 @@ function SwipeableTextMobileStepper() {
 
   return (
     <Grid container justifyContent="center">
-      <Box sx={{ maxWidth: "50rem", flexGrow: 1, align: "center" }}>
+      <Box sx={{ maxWidth: "100%", flexGrow: 1, align: "center" }}>
         <Paper
           square
           elevation={0}
@@ -113,7 +113,7 @@ function SwipeableTextMobileStepper() {
                 <Box
                   component="img"
                   sx={{
-                    height: 300,
+                    height: 550,
                     display: "block",
                     maxHeight: "100%",
                     maxWidth: "100%",

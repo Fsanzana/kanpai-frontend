@@ -34,7 +34,7 @@ class MangaReader {
 
   updateTitle() {
     document.title =
-      window.location.href.split("/")[6].replaceAll("-", "\xa0") +
+      window.location.href.split("/")[7].replaceAll("-", "\xa0") +
       "\xa0" +
       this.currentChapter;
   }
