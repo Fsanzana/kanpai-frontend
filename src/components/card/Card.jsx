@@ -48,15 +48,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const MangaCard = React.memo(function GalaxyCard() {
+export const MangaCard = React.memo(function GalaxyCard(props) {
   const mediaStyles = useCoverCardMediaStyles({ bgPosition: "top" });
   const styles = useStyles();
   return (
     <Card className={styles.card}>
-      <CardActionArea style={{ height: "100%" }}>
+      <CardActionArea style={{ height: "100%" }} href={props.href}>
         <Tooltip title={descripcion} sx={{ maxWidth: 245 }}>
           <CardContent>
-            <CardMedia classes={mediaStyles} image={image} />
+            <CardMedia classes={mediaStyles} image={props.thumbnail} />
             <Box py={3} px={2} className={styles.content}>
               <Info useStyles={useGalaxyInfoStyles}>
                 <InfoTitle
@@ -66,12 +66,7 @@ export const MangaCard = React.memo(function GalaxyCard() {
                     fontFamily: "Comic Neue",
                     overflowWrap: "break-word",
                   }}
-                >
-                  {/* <Title.Consumer>
-                    {(title) => {
-                      return title;
-                    }}
-                  </Title.Consumer> */}
+                >{props.name}
                 </InfoTitle>
               </Info>
             </Box>

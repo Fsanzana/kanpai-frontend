@@ -98,7 +98,7 @@ function SwipeableTextMobileStepper() {
           }}
         >
           <Typography color="#cacaca" fontFamily="Comic Neue">
-            {images[activeStep].label}
+            {/* {images[activeStep].label} */}
           </Typography>
         </Paper>
         <AutoPlaySwipeableViews

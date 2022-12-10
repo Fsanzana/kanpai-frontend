@@ -1,0 +1,59 @@
+[{
+    "name":"Akira",
+    "route":"src/test/manga/akira/thumbnail.jpg"
+}
+,
+{
+    "name":"Berserk",
+    "route":"/src/test/manga/berserk/thumbnail.jpg"
+},
+{
+    "name":"Death Note",
+    "route":"/src/test/manga/death-note/thumbnail.jpg"
+},
+{
+    "name":"Dodoro",
+    "route":"/src/test/manga/dororo/thumbnail.webp"
+},
+{
+    "name":"Fullmetal Alchemist",
+    "route":"/src/test/manga/fullmetal-alchemist/thumbnail.jpg"
+},
+{
+    "name":"Hajime No Ippo",
+    "route":"/src/test/manga/hajime-no-ippo/thumbnail.jpg"
+},
+{
+    "name":"Hittoribocchi no oo Seikatsu",
+    "route":"/src/test/manga/hitoribocchi-no-oo-seikatsu/thumbnail.jpg",
+    "href":"/src/components/reader/mangareader.html#/hitoribocchi-no-oo-seikatsu/chapter-1/page-0"
+},
+{
+    "name":"Made in Abyss",
+    "route":"/src/test/manga/made-in-abyss/thumbnail.jpg"
+},
+{
+    "name":"Mob Psycho 100",
+    "route":"/src/test/manga/mob-psicho-100/thumbnail.webp"
+},
+{
+    "name":"Neon Genesis Evangelion",
+    "route":"/src/test/manga/neon-genesis-evangelion/thumbnail.jpeg"
+},
+{
+    "name":"Ousama Ranking",
+    "route":"/src/test/manga/ousama-ranking/thumbnail.jpg"
+},
+{
+    "name":"Spy x Famiy",
+    "route":"/src/test/manga/spy-x-family/thumbnail.jpg"
+},
+{
+    "name":"Vagabond",
+    "route":"/src/test/manga/vagabond/thumbnail.jpg"
+},
+{
+    "name":"Vinland Saga",
+    "route":"/src/test/manga/vinland-saga/thumbnail.jpg"
+}
+]
