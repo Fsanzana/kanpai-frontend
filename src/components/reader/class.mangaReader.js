@@ -707,10 +707,10 @@ class MangaReader {
       '<img id="closeButtonIcon" src="/src/assets/close_icon.png" height="30rem"></button>' +
       '<h5 style="margin: auto;margin-top: 8%;text-align: center;color: #ffffff;">NO HAY MAS MANGA PARA CARGAR, ELIGE UNA OPCION</h5>' +
       //HOME BUTTON
-      '<button id="homeButton" title="Volver al home" onclick="alert(' +
-      "'BACK TO HOME PAGE'" +
-      ');" style="position: absolute;left: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
+      '<a href="/">'+
+      '<button id="homeButton" title="Volver al home" style="position: absolute;left: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
       '<img id="homeButtonIcon" src="/src/assets/home.png" height="30rem"></button>' +
+      '<a/>'+
       //BACK TO MANGA BUTTON
       '<button id="backButton" title="Volver atrás" onclick="alert(' +
       "'BACK TO MANGA PAGE'" +

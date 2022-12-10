@@ -12,7 +12,7 @@ function Home() {
       <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
         <Grid container justifyContent="center">
         {mangaList.map((data, idx) => (
-            <Card name={data.name} thumbnail={data.route}/>
+            <Card name={data.name} thumbnail={data.route} link={data.href}/>
         ))}
         </Grid>
       </Box>

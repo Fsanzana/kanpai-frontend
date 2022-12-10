@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <ResponsiveAppBar className="appbar" />
       <Home />
+      
     </div>
   );
 }

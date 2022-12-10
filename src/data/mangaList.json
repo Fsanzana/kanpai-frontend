@@ -1,27 +1,33 @@
 [{
     "name":"Akira",
-    "route":"src/test/manga/akira/thumbnail.jpg"
+    "route":"src/test/manga/akira/thumbnail.jpg",
+    "href":"/"
 }
 ,
 {
     "name":"Berserk",
-    "route":"/src/test/manga/berserk/thumbnail.jpg"
+    "route":"/src/test/manga/berserk/thumbnail.jpg",
+    "href":"/src/components/reader/mangareader.html#/berserk/chapter-1/page-0"
 },
 {
     "name":"Death Note",
-    "route":"/src/test/manga/death-note/thumbnail.jpg"
+    "route":"/src/test/manga/death-note/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Dodoro",
-    "route":"/src/test/manga/dororo/thumbnail.webp"
+    "route":"/src/test/manga/dororo/thumbnail.webp",
+    "href":"/"
 },
 {
     "name":"Fullmetal Alchemist",
-    "route":"/src/test/manga/fullmetal-alchemist/thumbnail.jpg"
+    "route":"/src/test/manga/fullmetal-alchemist/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Hajime No Ippo",
-    "route":"/src/test/manga/hajime-no-ippo/thumbnail.jpg"
+    "route":"/src/test/manga/hajime-no-ippo/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Hittoribocchi no oo Seikatsu",
@@ -30,30 +36,37 @@
 },
 {
     "name":"Made in Abyss",
-    "route":"/src/test/manga/made-in-abyss/thumbnail.jpg"
+    "route":"/src/test/manga/made-in-abyss/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Mob Psycho 100",
-    "route":"/src/test/manga/mob-psicho-100/thumbnail.webp"
+    "route":"/src/test/manga/mob-psicho-100/thumbnail.webp",
+    "href":"/"
 },
 {
     "name":"Neon Genesis Evangelion",
-    "route":"/src/test/manga/neon-genesis-evangelion/thumbnail.jpeg"
+    "route":"/src/test/manga/neon-genesis-evangelion/thumbnail.jpeg",
+    "href":"/"
 },
 {
     "name":"Ousama Ranking",
-    "route":"/src/test/manga/ousama-ranking/thumbnail.jpg"
+    "route":"/src/test/manga/ousama-ranking/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Spy x Famiy",
-    "route":"/src/test/manga/spy-x-family/thumbnail.jpg"
+    "route":"/src/test/manga/spy-x-family/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Vagabond",
-    "route":"/src/test/manga/vagabond/thumbnail.jpg"
+    "route":"/src/test/manga/vagabond/thumbnail.jpg",
+    "href":"/"
 },
 {
     "name":"Vinland Saga",
-    "route":"/src/test/manga/vinland-saga/thumbnail.jpg"
+    "route":"/src/test/manga/vinland-saga/thumbnail.jpg",
+    "href":"/"
 }
 ]
