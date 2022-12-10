@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CssBaseline from "@mui/material/CssBaseline";
+import Input from "/src/components/searchInput/Input.jsx";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -147,6 +148,9 @@ function ResponsiveAppBar() {
                   {page}
                 </Button>
               ))}
+            </Box>
+            <Box>
+              <Input></Input>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>

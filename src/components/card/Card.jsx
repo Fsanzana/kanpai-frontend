@@ -1,14 +1,15 @@
 import React from "react";
-import NoSsr from "@material-ui/core/NoSsr";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import { CardActionArea, CardActions, Tooltip } from "@mui/material";
-import { Info, InfoSubtitle, InfoTitle } from "@mui-treasury/components/info";
+import { CardActionArea, Tooltip } from "@mui/material";
+import { Info, InfoTitle } from "@mui-treasury/components/info";
 import { useGalaxyInfoStyles } from "@mui-treasury/styles/info/galaxy";
 import { useCoverCardMediaStyles } from "@mui-treasury/styles/cardMedia/cover";
+
+import { Title } from "/src/components/layout/Layout.jsx";
 
 const descripcion =
   "Hitori Bocchi es una joven que sufre de Taijin kyofusho (una variante de fobia social), lo que le impide hablarle a otras personas. Al entrar a la escuela secundaria, su única amiga le dijo que no podrían seguir siendo amigas hasta que Bocchi consiguiera hacerse amiga de todos sus nuevos compañeros de clase.";
@@ -66,7 +67,11 @@ export const MangaCard = React.memo(function GalaxyCard() {
                     overflowWrap: "break-word",
                   }}
                 >
-                  Bocchi
+                  {/* <Title.Consumer>
+                    {(title) => {
+                      return title;
+                    }}
+                  </Title.Consumer> */}
                 </InfoTitle>
               </Info>
             </Box>
