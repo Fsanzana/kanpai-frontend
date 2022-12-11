@@ -79,7 +79,7 @@ function ResponsiveAppBar() {
               }}
             >
               <img
-                src="src/assets/favicon.png"
+                src="/src/assets/favicon.png"
                 style={{
                   width: "50px",
                   height: "100%",
@@ -156,7 +156,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="src\assets\boxi.png" />
+                  <Avatar alt="Remy Sharp" src="/src/assets/boxi.png" />
                 </IconButton>
               </Tooltip>
               <Menu

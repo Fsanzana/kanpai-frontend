@@ -51,12 +51,11 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
   {
     label: "Bocchi",
-    imgPath: "src/assets/boxi.png",
+    imgPath: "src/assets/banner.jpg",
   },
   {
     label: "hitoribocchi",
-    imgPath:
-      "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/7cada5d24f7557dfb130523565c073fa.jpeg",
+    imgPath: "src/assets/banner bocchi.jpg",
   },
   {
     label: "Bocchi + Bocchi = Bocchi",
@@ -96,11 +95,7 @@ function SwipeableTextMobileStepper() {
             pl: 2,
             bgcolor: "#303030",
           }}
-        >
-          <Typography color="#cacaca" fontFamily="Comic Neue">
-            {/* {images[activeStep].label} */}
-          </Typography>
-        </Paper>
+        ></Paper>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={activeStep}

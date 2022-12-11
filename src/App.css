@@ -1,9 +1,7 @@
-
-.appbar{
+.appbar {
   position: absolute;
   z-index: 1;
 }
-
 
 .mangas {
   display: inline-block;

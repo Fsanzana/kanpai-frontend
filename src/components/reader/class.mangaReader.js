@@ -696,6 +696,18 @@ class MangaReader {
 
   changeOverview(src) {
     document.getElementById("pageImage").src = src;
+    var img = new Image();
+    img.src = src;
+    var aux = this.scaleFactor * 316.8;
+    img.onload = function () {
+      if (this.width > this.height) {
+        aux *= 4;
+        document.getElementById("pageImage").style.width = aux + "px";
+      } else {
+        aux *= 2;
+        document.getElementById("pageImage").style.width = aux + "px";
+      }
+    };
   }
 
   setGui() {
@@ -707,21 +719,25 @@ class MangaReader {
       '<img id="closeButtonIcon" src="/src/assets/close_icon.png" height="30rem"></button>' +
       '<h5 style="margin: auto;margin-top: 8%;text-align: center;color: #ffffff;">NO HAY MAS MANGA PARA CARGAR, ELIGE UNA OPCION</h5>' +
       //HOME BUTTON
-      '<a href="/">'+
+      '<a href="/">' +
       '<button id="homeButton" title="Volver al home" style="position: absolute;left: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
       '<img id="homeButtonIcon" src="/src/assets/home.png" height="30rem"></button>' +
-      '<a/>'+
+      "<a/>" +
       //BACK TO MANGA BUTTON
-      '<button id="backButton" title="Volver atrás" onclick="alert(' +
-      "'BACK TO MANGA PAGE'" +
-      ');" style="position: absolute;right: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
-      '<img id="backButtonIcon" src="/src/assets/back.png" height="30rem"></button></div>';
+      '<a href="/' +
+      this.src.split("/")[4] +
+      '">' +
+      '<button id="backButton" title="Volver atrás" style="position: absolute;right: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
+      '<img id="backButtonIcon" src="/src/assets/back.png" height="30rem"></button></div>' +
+      "<a/>";
     var temp =
       //CHAPTER NAVIGATION BAR
       '<div id="navBar" style="position: absolute;background-color: #252525;padding: 0.35rem 0.5rem;width: 100%;height: 1.2rem;left: -0.3rem;top: -0.3rem;border: 0.3rem solid #303030;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
-      '<button id="backButton" onclick="alert(' +
-      "'BACK TO MANGA PAGE'" +
-      ');" title="Volver al manga" style="position: absolute;left: -0.1rem;font-size: 1rem;width: 2rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><</button>' +
+      '<a href="/' +
+      this.src.split("/")[4] +
+      '">' +
+      '<button id="backButton" title="Volver al manga" style="position: absolute;left: -0.1rem;font-size: 1rem;width: 2rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><</button>' +
+      "<a/>" +
       '<select id="chapterSelect" onclick="reader.chapterSelector(this.value)" title="Selecionar capitulo" style="position: absolute;right: 50%;margin-right: -5.5rem;font-size: 1rem;width: 11rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;font-family: &quot;Comic Neue&quot;, cursive;" comic=""></select>' +
       '<button id="prevChapter" onclick="reader.prevChapterButton()" title="Capitulo previo" style="position: absolute;left: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;"><- previo</button>' +
       '<button id="nextChapter" onclick="reader.nextChapterButton()" title="Próximo capitulo" style="position: absolute;right: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;">siguiente -></button></div>' +

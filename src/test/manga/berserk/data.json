@@ -18,42 +18,74 @@
           {
             "id": "1",
             "dataX": "0",
-            "dataY": "-250",
-            "dataScale": "1.3",
-            "width": "4800",
-            "height": "3600"
+            "dataY": "-265",
+            "dataScale": "1.1",
+            "width": "11500",
+            "height": "3900"
           },
           {
             "id": "2",
-            "dataX": "146",
-            "dataY": "102",
-            "dataScale": "2.5",
-            "width": "1050",
-            "height": "780"
+            "dataX": "525",
+            "dataY": "80",
+            "dataScale": "2.1",
+            "width": "860",
+            "height": "1650"
           },
           {
             "id": "3",
-            "dataX": "-142",
-            "dataY": "102",
-            "dataScale": "2.5",
-            "width": "1050",
-            "height": "780"
+            "dataX": "380",
+            "dataY": "80",
+            "dataScale": "2.1",
+            "width": "680",
+            "height": "1650"
           },
           {
             "id": "4",
-            "dataX": "146",
-            "dataY": "313",
-            "dataScale": "2.5",
-            "width": "1050",
-            "height": "780"
+            "dataX": "175",
+            "dataY": "80",
+            "dataScale": "2.1",
+            "width": "1350",
+            "height": "1650"
           },
           {
             "id": "5",
-            "dataX": "-142",
-            "dataY": "313",
-            "dataScale": "2.5",
+            "dataX": "310",
+            "dataY": "355",
+            "dataScale": "1.5",
+            "width": "4300",
+            "height": "1600"
+          },
+          {
+            "id": "6",
+            "dataX": "-145",
+            "dataY": "76",
+            "dataScale": "2.1",
             "width": "1050",
-            "height": "780"
+            "height": "1550"
+          },
+          {
+            "id": "7",
+            "dataX": "-326",
+            "dataY": "76",
+            "dataScale": "2.1",
+            "width": "750",
+            "height": "1550"
+          },
+          {
+            "id": "8",
+            "dataX": "-212",
+            "dataY": "348",
+            "dataScale": "2.1",
+            "width": "1670",
+            "height": "965"
+          },
+          {
+            "id": "9",
+            "dataX": "-495",
+            "dataY": "180",
+            "dataScale": "1.6",
+            "width": "1350",
+            "height": "3300"
           },
           {
             "id": "overview",
@@ -66,67 +98,27 @@
         "panels": [
           {
             "id": "1",
-            "dataX": "137",
-            "dataY": "-324",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "dataX": "0",
+            "dataY": "-225",
+            "dataScale": "1.3",
+            "width": "4800",
+            "height": "3800"
           },
           {
             "id": "2",
-            "dataX": "-158",
-            "dataY": "-323",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "dataX": "85",
+            "dataY": "230",
+            "dataScale": "1.5",
+            "width": "3100",
+            "height": "3300"
           },
           {
             "id": "3",
-            "dataX": "137",
-            "dataY": "-114",
-            "dataScale": "2.5",
-            "width": "1070",
-            "height": "785"
-          },
-          {
-            "id": "4",
-            "dataX": "-157",
-            "dataY": "-112",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
-          },
-          {
-            "id": "5",
-            "dataX": "137",
-            "dataY": "97",
-            "dataScale": "2.5",
-            "width": "1070",
-            "height": "785"
-          },
-          {
-            "id": "6",
-            "dataX": "-156",
-            "dataY": "97",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
-          },
-          {
-            "id": "7",
-            "dataX": "137",
-            "dataY": "308",
-            "dataScale": "2.5",
-            "width": "1070",
-            "height": "785"
-          },
-          {
-            "id": "8",
-            "dataX": "-156",
-            "dataY": "308",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "785"
+            "dataX": "-212",
+            "dataY": "205",
+            "dataScale": "1.8",
+            "width": "870",
+            "height": "2250"
           },
           {
             "id": "overview",
@@ -139,67 +131,75 @@
         "panels": [
           {
             "id": "1",
-            "dataX": "148",
-            "dataY": "-325",
-            "dataScale": "2.5",
+            "dataX": "180",
+            "dataY": "-277",
+            "dataScale": "2.3",
             "width": "1065",
-            "height": "780"
+            "height": "1420"
           },
           {
             "id": "2",
-            "dataX": "-142",
-            "dataY": "-324",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "dataX": "-10",
+            "dataY": "-276",
+            "dataScale": "2.3",
+            "width": "740",
+            "height": "1420"
           },
           {
             "id": "3",
-            "dataX": "148",
-            "dataY": "-114",
+            "dataX": "-200",
+            "dataY": "-410",
             "dataScale": "2.5",
-            "width": "1060",
-            "height": "780"
+            "width": "950",
+            "height": "800"
           },
           {
             "id": "4",
-            "dataX": "-142",
-            "dataY": "-114",
+            "dataX": "-225",
+            "dataY": "-220",
             "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "width": "1200",
+            "height": "840"
           },
           {
             "id": "5",
-            "dataX": "148",
-            "dataY": "97",
+            "dataX": "149",
+            "dataY": "-5",
             "dataScale": "2.5",
-            "width": "1060",
-            "height": "780"
+            "width": "1300",
+            "height": "870"
           },
           {
             "id": "6",
-            "dataX": "-142",
-            "dataY": "97",
+            "dataX": "140",
+            "dataY": "170",
             "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "width": "1300",
+            "height": "600"
           },
           {
             "id": "7",
-            "dataX": "148",
-            "dataY": "308",
-            "dataScale": "2.5",
-            "width": "1070",
-            "height": "785"
+            "dataX": "-142",
+            "dataY": "85",
+            "dataScale": "1.8",
+            "width": "1700",
+            "height": "2300"
           },
           {
             "id": "8",
-            "dataX": "-142",
-            "dataY": "308",
+            "dataX": "165",
+            "dataY": "370",
             "dataScale": "2.5",
-            "width": "1065",
-            "height": "785"
+            "width": "1090",
+            "height": "900"
+          },
+          {
+            "id": "9",
+            "dataX": "-127",
+            "dataY": "370",
+            "dataScale": "2.5",
+            "width": "1250",
+            "height": "890"
           },
           {
             "id": "overview",
@@ -212,27 +212,27 @@
         "panels": [
           {
             "id": "1",
-            "dataX": "136",
-            "dataY": "-325",
+            "dataX": "233",
+            "dataY": "-296",
             "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "width": "660",
+            "height": "1025"
           },
           {
             "id": "2",
-            "dataX": "-157",
-            "dataY": "-324",
-            "dataScale": "2.5",
-            "width": "1065",
-            "height": "780"
+            "dataX": "233",
+            "dataY": "31",
+            "dataScale": "2.1",
+            "width": "800",
+            "height": "1680"
           },
           {
             "id": "3",
-            "dataX": "136",
-            "dataY": "-114",
-            "dataScale": "2.5",
-            "width": "1060",
-            "height": "780"
+            "dataX": "-60",
+            "dataY": "-120",
+            "dataScale": "1.065",
+            "width": "4700",
+            "height": "7000"
           },
           {
             "id": "4",
