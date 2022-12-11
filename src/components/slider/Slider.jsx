@@ -59,8 +59,7 @@ const images = [
   },
   {
     label: "Bocchi + Bocchi = Bocchi",
-    imgPath:
-      "https://areajugones.sport.es/wp-content/uploads/2022/10/bocchi-the-rock-gjhjk-1080x609.jpg",
+    imgPath: "src/assets/banner action.jpg",
   },
 ];
 

@@ -724,7 +724,7 @@ class MangaReader {
       '<img id="homeButtonIcon" src="/src/assets/home.png" height="30rem"></button>' +
       "<a/>" +
       //BACK TO MANGA BUTTON
-      '<a href="/' +
+      '<a href="/manga/' +
       this.src.split("/")[4] +
       '">' +
       '<button id="backButton" title="Volver atrás" style="position: absolute;right: 20%;top: 50%;border-radius: 2rem;border: none;color: #b63333;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer;">' +
@@ -733,7 +733,7 @@ class MangaReader {
     var temp =
       //CHAPTER NAVIGATION BAR
       '<div id="navBar" style="position: absolute;background-color: #252525;padding: 0.35rem 0.5rem;width: 100%;height: 1.2rem;left: -0.3rem;top: -0.3rem;border: 0.3rem solid #303030;transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;">' +
-      '<a href="/' +
+      '<a href="/manga/' +
       this.src.split("/")[4] +
       '">' +
       '<button id="backButton" title="Volver al manga" style="position: absolute;left: -0.1rem;font-size: 1rem;width: 2rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><</button>' +
