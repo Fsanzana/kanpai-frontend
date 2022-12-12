@@ -41,8 +41,9 @@ export default class ReactRectangleSelection extends React.Component {
           <img
             src="/src/assets/boxi.png"
             style={{
+              userSelect: "none",
               resizeMode: "contain",
-              maxHeight: "100%",
+              maxHeight: "36.9rem",
               maxWidth: "100%",
               pointerEvents: "none",
             }}

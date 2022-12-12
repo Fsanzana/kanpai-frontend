@@ -18,7 +18,7 @@ export default function DemSelect() {
   return (
     <Box sx={{ minWidth: 130 }}>
       <FormControl fullWidth height="21rem">
-        <InputLabel id="demo-simple-select-label">Demografía</InputLabel>
+        <InputLabel id="demo-simple-select-label">Demgrafía</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
