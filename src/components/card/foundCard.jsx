@@ -38,7 +38,14 @@ export default function DescCard() {
           sx={{ flexGrow: 1, p: 0 }}
           justifyContent="center"
         >
-          <CardContent>
+          <CardContent
+            container
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-evenly",
+            }}
+          >
             {mangaList.map((data, idx) => (
               <MangaCard
                 name={data.name}

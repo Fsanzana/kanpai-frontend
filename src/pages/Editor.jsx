@@ -1,31 +1,47 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import React from "react";
 
 import RectSelect from "/src/components/editor/rectSelect.jsx";
 
-import Footer from "../components/footer/Footer";
-
 export default function Editor() {
   return (
     <div className="editor">
+      <Paper
+        elevation={10}
+        sx={{
+          padding: "1rem",
+          maxWidth: "99%",
+          height: "1rem",
+          display: "flex",
+          flexWrap: "wrap",
+          margin: "0.5rem",
+        }}
+      >
+        <Typography variant="headline" component="h3">
+          This is the tool bar.
+        </Typography>
+      </Paper>
       <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          "& > :not(style)": {
-            m: 1,
-            width: "19vh",
-            height: "19vh",
-          },
         }}
       >
-        <Paper elevation={24} sx={{ color: "secondary" }}>
+        <Paper
+          elevation={10}
+          sx={{
+            padding: "1rem",
+            maxWidth: "99%",
+            maxHeight: "100%",
+            margin: "0.5rem",
+          }}
+        >
           <Typography variant="headline" component="h3">
-            This is a sheet of paper.
+            This is the order selector.
           </Typography>
         </Paper>
-        {/* <Footer /> */}
+        <RectSelect />
       </Box>
     </div>
   );

@@ -1,12 +1,10 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
 
 import SearchCard from "/src/components/card/searchCard.jsx";
 import FoundCard from "/src/components/card/foundCard.jsx";
 import InputCard from "/src/components/card/inputCard.jsx";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Box from "@mui/material/Box";
-import { Paper, Typography, Container } from "@material-ui/core";
 
 function Search() {
   return (

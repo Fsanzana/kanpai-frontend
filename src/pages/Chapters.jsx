@@ -6,7 +6,7 @@ import ChapterMenu from "../components/menu/chapterMenu";
 import DescCard from "../components/card/descCard";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Box from "@mui/material/Box";
-import { Paper, Typography, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 function Chapters(props) {
   const file = "/src/test" + props.name + "/chapters.json";
   const [data, setData] = useState([]);
