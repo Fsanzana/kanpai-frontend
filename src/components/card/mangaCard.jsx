@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: "none",
     position: "relative",
     minWidth: 200,
+    maxWidth: 1,
     minHeight: 300,
     marginTop: "1rem",
     marginBottom: "1rem",

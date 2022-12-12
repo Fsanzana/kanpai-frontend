@@ -150,7 +150,7 @@ function ResponsiveAppBar() {
               ))}
             </Box>
             <Box>
-              <Input></Input>
+              <Input />
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>

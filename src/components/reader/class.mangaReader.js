@@ -593,12 +593,6 @@ class MangaReader {
 
   setDiv() {
     var step = [0, 0, 0, 0, 0, 0];
-    var sizer;
-    if (screen.height > screen.width) {
-      sizer = screen.height / 2;
-    } else {
-      sizer = screen.width / 2;
-    }
     var temp =
       '<div id="frame" data-x="' +
       step[1] +
@@ -620,9 +614,7 @@ class MangaReader {
       step[3] +
       "px; height: " +
       step[4] +
-      "px; border: " +
-      sizer +
-      'px solid #303030; opacity: 0.99;"></div></div>';
+      'px; border: 3000px solid #303030; opacity: 0.99;"></div></div>';
     document.getElementById("readerStyle").innerHTML += temp;
   }
 

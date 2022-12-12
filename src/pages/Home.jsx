@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Slider from "/src/components/slider/Slider.jsx";
 import { Outlet } from "react-router-dom";
 import mangaList from "/src/data/mangaList.json";
+
 function Home() {
   return (
     <div className="Home">
