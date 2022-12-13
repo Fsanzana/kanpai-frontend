@@ -32,6 +32,7 @@ const theme = createTheme({
   },
 });
 export default function ChapterMenu(props) {
+  const cap = "Capitulo ";
   return (
     <ThemeProvider theme={theme}>
       <Paper
@@ -44,15 +45,12 @@ export default function ChapterMenu(props) {
       >
         <MenuList>
           {props.chapters.map((chapter) => (
-            <MenuItem>
-              <a
-                href={
-                  "/src/components/reader/mangareader.html#" +
-                  props.name +
-                  "/" +
-                  chapter
-                }
-              >
+            <a
+              href={
+                "/src/components/reader/mangareader.html#" + chapter.chaPath
+              }
+            >
+              <MenuItem>
                 <Grid
                   container
                   direction="row"
@@ -60,14 +58,14 @@ export default function ChapterMenu(props) {
                   sx={{ width: "100%" }}
                 >
                   <Typography textAlign="center" color="black">
-                    {chapter
-                      .split("/")[0]
-                      .replace("-", " ")
-                      .replace("chapter", "Capítulo")}
+                    {cap + chapter.chaNum}
+                  </Typography>
+                  <Typography textAlign="center" color="black">
+                    {chapter.chaName}
                   </Typography>
                 </Grid>
-              </a>
-            </MenuItem>
+              </MenuItem>
+            </a>
           ))}
         </MenuList>
       </Paper>
