@@ -3,7 +3,8 @@
     "title": "Death Note",
     "desc": "Light Yagami es un excelente estudiante japonés que ha tenido una vida aburrida. Esto cambia radicalmente cuando encuentra tirado en el suelo un cuaderno conocido como Death Note (Libreta de la Muerte), un cuaderno perdido por Ryuk, un Shinigami (Dios de la muerte). Cualquier humano cuyo nombre esté escrito en el cuaderno morirá, y ahora Light ha decidido utilizar este poder para crear un mundo perfecto sin criminales. Pero cuando los criminales comienzan a morir de forma masiva, las autoridades envían al legendario detective L en busca del asesino. Con L pisándole los talones, Podrá mantener Light su noble propósito incluso arriesgando su vida.",
     "chapters": [],
-    "img": "/src/test/manga/death-note/thumbnail.jpg",
+    "img": "/src/assets/manga/death-note/thumbnail.jpg",
+    "banner": "/src/assets/manga/death-note/banner.jpg",
     "state": "Finalizado",
     "publication": "1/12/2003",
     "tags": ["Detectives", "Fantasía"]

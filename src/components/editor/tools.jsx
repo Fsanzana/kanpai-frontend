@@ -96,6 +96,7 @@ export default function CustomizedDividers() {
         >
           <ToggleButton value="rectSelect" aria-label="Make a Selection">
             <Tooltip title="Hacer Selección">
+              {/* https://reactjs.org/docs/hooks-overview.html#:~:text=Hooks%20are%20functions%20that%20let,if%20you'd%20like.) */}
               <HighlightAltRoundedIcon />
             </Tooltip>
           </ToggleButton>

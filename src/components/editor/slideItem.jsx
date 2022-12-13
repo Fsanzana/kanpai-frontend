@@ -8,8 +8,6 @@ import { ListItemIcon, Paper } from "@material-ui/core";
 import { ListItem, ToggleButton, Tooltip } from "@mui/material";
 import { IconButton } from "@mui/material";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 export default function SlideItem(props) {
   const [selected, setSelected] = React.useState(false);
   return (
@@ -30,6 +28,7 @@ export default function SlideItem(props) {
           edge="end"
           aria-label="move-forward"
           sx={{ margin: "0.2rem" }}
+          onClick={() => props.goUp(props.name)}
         >
           <Tooltip title="Poner Antes">
             <ArrowDropUpRoundedIcon />
@@ -40,6 +39,7 @@ export default function SlideItem(props) {
           edge="end"
           aria-label="move-backwards"
           sx={{ margin: "0.2rem" }}
+          onClick={() => props.goDown(props.name)}
         >
           <Tooltip title="Poner Después">
             <ArrowDropDownRoundedIcon />

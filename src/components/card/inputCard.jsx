@@ -2,7 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
-import Input from "/src/components/searchInput/Input.jsx";
+import Input from "/src/components/searchInput/BigInput.jsx";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -37,13 +37,11 @@ export default function DescCard() {
         }}
       >
         <CardContent
-          container
           component="main"
           sx={{
             flexGrow: 1,
             p: 2.5,
           }}
-          justifyContent="center"
         >
           <Input />
         </CardContent>

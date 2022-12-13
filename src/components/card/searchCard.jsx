@@ -43,6 +43,11 @@ const tags = [
 ];
 
 export default function DescCard() {
+  const handleTagClick = (name) => {
+    var aux = "/search-g/" + name.replaceAll(" ", "_");
+    location.assign(aux);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -51,9 +56,11 @@ export default function DescCard() {
         <CardContent>
           <DemSelect />
           <Grid container direction="row" sx={{ width: "15rem" }}>
-            {tags.map((labels) => (
+            {tags.map((labels, key) => (
               <Chip
+                key={key}
                 label={labels}
+                onClick={() => handleTagClick(labels)}
                 sx={{
                   color: "black",
                   background: "#cacaca",

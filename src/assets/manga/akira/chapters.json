@@ -3,7 +3,8 @@
     "title": "Akira",
     "desc": "Akira era un niño que desarrolló habilidades psíquicas cuando servía de examen para el gobierno ESP en los años 80. Perdió el control de su poder y aniquiló Tokio en 1988. Después de aquel acontecimiento, Akira fue confinado y sujeto a pruebas de la ciencia moderna, que probó la incapacidad de demostrar el misterio.",
     "chapters": [],
-    "img": "/src/test/manga/akira/thumbnail.jpg",
+    "img": "/src/assets/manga/akira/thumbnail.jpg",
+    "banner": "/src/assets/manga/akira/banner.jpg",
     "state": "Finalizado",
     "publication": "20/12/1982",
     "tags": ["Acción", "Drama", "Psicológico", "Ciencia Ficción", "Seinen"]

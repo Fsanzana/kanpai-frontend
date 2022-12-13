@@ -32,7 +32,7 @@ const theme = createTheme({
   },
 });
 export default function ChapterMenu(props) {
-  const cap = "Capitulo ";
+  const cap = "Capítulo ";
   return (
     <ThemeProvider theme={theme}>
       <Paper

@@ -39,15 +39,15 @@ export default function DescCard() {
           justifyContent="center"
         >
           <CardContent
-            container
             sx={{
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "space-evenly",
             }}
           >
-            {mangaList.map((data, idx) => (
+            {mangaList.map((data, key) => (
               <MangaCard
+                key={key}
                 name={data.name}
                 thumbnail={data.img}
                 link={data.href}

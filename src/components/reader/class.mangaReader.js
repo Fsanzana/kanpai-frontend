@@ -19,7 +19,7 @@ class MangaReader {
 
   getUrlData() {
     //change the i starting point to get only the source
-    this.src = "/src/test/manga/" + window.location.href.split("/")[7] + "/";
+    this.src = "/src/assets/manga/" + window.location.href.split("/")[7] + "/";
 
     this.currentChapter = parseInt(
       window.location.href.split("chapter-")[1].split("/")[0]
@@ -42,7 +42,7 @@ class MangaReader {
   updateUrl() {
     var aux =
       "mangareader.html#" +
-      this.src.split("/src/test/manga")[1] +
+      this.src.split("/src/assets/manga")[1] +
       "chapter-" +
       this.currentChapter +
       "/page-" +
@@ -731,8 +731,8 @@ class MangaReader {
       '<button id="backButton" title="Volver al manga" style="position: absolute;left: -0.1rem;font-size: 1rem;width: 2rem;height: 2.35rem;margin-top: -0.7rem;color: #303030;border: 0.1rem solid #303030;"><</button>' +
       "<a/>" +
       '<select id="chapterSelect" onclick="reader.chapterSelector(this.value)" title="Selecionar capitulo" style="position: absolute;right: 50%;margin-right: -5.5rem;font-size: 1rem;width: 11rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;font-family: &quot;Comic Neue&quot;, cursive;" comic=""></select>' +
-      '<button id="prevChapter" onclick="reader.prevChapterButton()" title="Capitulo previo" style="position: absolute;left: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;"><- previo</button>' +
-      '<button id="nextChapter" onclick="reader.nextChapterButton()" title="Próximo capitulo" style="position: absolute;right: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;">siguiente -></button></div>' +
+      '<button id="prevChapter" onclick="reader.prevChapterButton()" title="Capitulo previo" style="position: absolute;left: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;"><- PREVIO</button>' +
+      '<button id="nextChapter" onclick="reader.nextChapterButton()" title="Próximo capitulo" style="position: absolute;right: 20%;font-size: 1rem;width: 7rem;height: 2.35rem;margin-top: -0.7rem;color: #cacaca;border: 0.1rem solid #303030;">SIGUIENTE -></button></div>' +
       //ZOOM
       '<button id="zoomSwitch" onclick="reader.zoomFunc()" title="Zoom" style="position: absolute;margin-left: 10px;margin-bottom: 4rem;left: 0px;bottom: 0px;border-radius: 2rem;border: none;color: #303030;padding: 0.35rem 0.5rem;background-position: center;background-size: contain;cursor: pointer; transition: all 350ms ease-in-out 0ms;transform-style: preserve-3d;cursor:default">' +
       '<img id="zoomIcon" src="/src/assets/zoom.png" height="30rem" style="cursor:pointer"></button>' +

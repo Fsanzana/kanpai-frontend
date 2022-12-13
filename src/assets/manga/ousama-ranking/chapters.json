@@ -3,7 +3,8 @@
     "title": "Ousama Ranking",
     "desc": "La historia se centra en Bojji, un débil y sordo príncipe que no puede sostener incluso una espada para niños. Como el primogénito, sostiene su enorme deseo de convertirse en el más poderoso rey del mundo. No obstante, las personas a su alrededor se refieren despectivamente a él y no tienen intención alguna de aceptarlo como rey. Bojji consigue su primer amigo, llamado Kage (sombra), literalmente una sombra en el suelo que de alguna manera puede entender a Bojji. De hecho, Kage es un sobreviviente del clan de asesinos “Kage” que fue eliminado, por lo que ya no es un asesino y sobrevive robando. La historia seguirá a Bojji haciendo su propio camino hacia su deseo.",
     "chapters": [],
-    "img": "/src/test/manga/ousama-ranking/thumbnail.jpg",
+    "img": "/src/assets/manga/ousama-ranking/thumbnail.jpg",
+    "banner": "/src/assets/manga/ousama-ranking/banner.jpg",
     "state": "En emisión",
     "publication": "01/04/2017",
     "tags": ["Seinen", "Fantasía"]

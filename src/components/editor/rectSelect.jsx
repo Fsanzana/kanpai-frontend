@@ -12,9 +12,13 @@ export default class ReactRectangleSelection extends React.Component {
       selectionBox: false,
       selectionBoxOrigin: [0, 0],
       selectionBoxTarget: [0, 0],
+      origin: [0, 0],
+      target: [0, 0],
       animation: "",
     };
   }
+
+  // this.state.LA WEA
 
   render() {
     return (
