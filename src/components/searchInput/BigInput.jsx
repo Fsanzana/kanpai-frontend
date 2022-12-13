@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import InputUnstyled, { inputUnstyledClasses } from "@mui/base/InputUnstyled";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
@@ -17,8 +16,7 @@ const StyledInputRoot = styled("div")(
   box-shadow: 0px 2px 2px black;
   display: flex;
   align-items: center;
-  width : auto;
-
+  width : 100%;
 
   &.${inputUnstyledClasses.focused} {
     border-color: #6c00b3;
@@ -33,7 +31,8 @@ const StyledInputRoot = styled("div")(
 
 const StyledInputElement = styled("input")(
   ({ theme }) => `
-  font-size: 0.875rem;
+  margin-left:1rem;
+  font-size: 2rem;
   font-family: inherit;
   font-weight: 400;
   line-height: 1.5;
@@ -42,23 +41,13 @@ const StyledInputElement = styled("input")(
   background: inherit;
   border: none;
   border-radius: inherit;
-  margin-left :0.5rem;
   outline: 0;
+  width : 100%;
 `
 );
 
-const IconButton = styled(ButtonUnstyled)(
-  ({ theme }) => `
-  display: inline-flex;
-  border: none;
-  background: inherit;
-  cursor: pointer;
-  color:#303030;
-  `
-);
-
 const InputAdornment = styled("div")`
-  margin: 8px;
+  margin-right: 1rem;
   display: inline-flex;
 `;
 
@@ -79,8 +68,6 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
 
 export default function InputAdornments() {
   const [message, setMessage] = useState("");
-
-  const [updated, setUpdated] = useState("");
 
   const search = () => {
     var aux = "/search-n/" + message;
@@ -107,14 +94,13 @@ export default function InputAdornments() {
   return (
     <Box
       sx={{
-        height: "2rem",
-        marginRight: "2rem",
+        height: "100%",
         display: "flex",
         "& > * + *": { ml: 1 },
       }}
     >
       <CustomInput
-        aria-label="Búsqueda"
+        aria-label="bigSearch"
         placeholder="Buscar Manga..."
         onChange={handleChange}
         onKeyDown={handleKeyDown}

@@ -11,6 +11,7 @@ export default function DemSelect() {
 
   const handleChange = (event) => {
     setDem(event.target.value);
+    location.assign("/search-d/" + event.target.value.replaceAll(" ", "_"));
   };
 
   const names = ["Seinen", "Shoujo", "Shounen", "Josei", "Kodomo"];

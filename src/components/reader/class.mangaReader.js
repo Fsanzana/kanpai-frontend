@@ -21,8 +21,6 @@ class MangaReader {
     //change the i starting point to get only the source
     this.src = "/src/assets/manga/" + window.location.href.split("/")[7] + "/";
 
-    console.log(window.location.href);
-
     this.currentChapter = parseInt(
       window.location.href.split("chapter-")[1].split("/")[0]
     );

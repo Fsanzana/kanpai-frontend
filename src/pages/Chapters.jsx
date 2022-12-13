@@ -66,6 +66,7 @@ function Chapters(props) {
               state={data.manStatus}
               publication={data.manRealease}
               tags={data.manGenre}
+              demo={data.manDemography}
             />
           </Grid2>
           <Grid2 xs="auto" sx={{ width: "70%" }}>

@@ -2,7 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
-import Input from "/src/components/searchInput/Input.jsx";
+import Input from "/src/components/searchInput/BigInput.jsx";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
