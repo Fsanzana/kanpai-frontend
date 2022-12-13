@@ -5,7 +5,6 @@ export default function Load() {
   return (
     <Box
       style={{
-        display: "flex",
         flex: 1,
         height: "90vh",
 

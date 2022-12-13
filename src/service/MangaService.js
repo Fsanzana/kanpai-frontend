@@ -1,12 +1,10 @@
-import axios from 'axios';
 import { useQuery } from 'react-query'; 
 
-const MANGA_API_REST_URL = "http://localhost:8080/manga/";
-
+import HttpCommon from '../Http-common';
 
 export const getMangabyName = (name) => {
     return useQuery(["manga",name], async () => {
-        const { data } = await axios.get(MANGA_API_REST_URL+name);
+        const { data } = await HttpCommon.get("manga/"+name);
         return data; 
   })
 }
