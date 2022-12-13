@@ -1,86 +1,266 @@
 [
   {
-    "name": "Akira",
-    "img": "/src/test/manga/akira/thumbnail.jpg",
-    "href": "/manga/akira",
-    "desc": "TETSUOOOOOOOOOOOOOOOOOOOO | KANEDAAAAAAAAAAAAAAA"
+    "manName": "Akira",
+    "manThumbnail": "/src/assets/manga/akira/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/akira/banner.jpg",
+    "manSynopsis": "En el año 2030, 38 años después de la III Guerra Mundial. Sobre las ruinas de Tokio se alza la metrópolis de Neo-Tokio, una ciudad opresiva e inhumana donde la violencia, el terrorismo y la droga son problemas cotidianos. Las sectas religiosas y los grupos extremistas, aprovechándose de la insatisfacción de los ciudadanos, cultivan el mito de AKIRA, un 'niño cobaya' depositario de la 'energía absoluta' cuya resurrección significaría para Japón el amanecer de una nueva era. El gobierno experimenta sobre niños con poderes psíquicos para represar la ciudad. Mientras la historia se centra en dos motociclistas callejeros, Kaneda y Tetsuo, muy buenos amigos que, cuando Tetsuo sufre un choque contra un niño psíquico en una pelea de bandas, obtiene poderes que poco a poco se incrementan, provocándole alucinaciones y poderes paranormales increíbles. Mientras Tetsuo Libera caos en la ciudad y descontrol total para demostrar sus poderes creyéndose un Dios, Kaneda lo intenta detener antes que sea",
+    "manDemography": "SEINEN",
+    "manRealease": "1982/10/14",
+    "manGenre": [
+      "ACCION",
+      "SUPERNATURAL",
+      "VIDA_ESCOLAR"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 3,
+    "manChapters": []
   },
   {
-    "name": "Berserk",
-    "img": "/src/test/manga/berserk/thumbnail.jpg",
-    "href": "/manga/berserk",
-    "desc": "Guts(o Gutts) es un guerrero que lleva una espada mas grande que él, tiene una fuerza inmensa pues puede blandirla con facilidad. Es un mercenario, al que solo le importa luchar. Un dia conoce a Griffith, un caballero líder de una banda conocida como La Banda del Halcón. Guts le reta y Griffith acepta a cambio de que si le vence, él se unirá a su banda. Guts es vencido y aunque no lo acepta termina por unirse a la banda. Poco a poco la banda de mercenarios va cogiendo fama al ganar importantes batallas, todo apunta a que el objetivo de Griffith de poseer su propio reino se hará realidad. Pero la tierra de Midland esconde muchos secretos..."
+    "manName": "Berserk",
+    "manThumbnail": "/src/assets/manga/berserk/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/berserk/banner.jpg",
+    "manSynopsis": "Guts, un ex-mercenario conocido como el 'Espadachín Negro', y en búsqueda de su venganza. Luego de una tumultuosa infancia, él finalmente encuentra a alguien a quien respeta y en quien puede confiar; y todo se desmorona cuando esta persona le arrebata todo lo importante para él, con el propósito de cumplir sus propios deseos. Ahora, siendo portador de la marca, Guts se encuentra condenado a un destino en el que es implacablemente perseguido por seres demoníacos. Encaminado en una terrible misión llena de desgracia, Guts, armado con una espada gigante y una fuerza monstruosa, no dejará que nada lo detenga, ni siquiera la misma muerte, hasta que sea capaz de tomar la cabeza de aquél que le robó toda su humanidad.",
+    "manDemography": "SEINEN",
+    "manRealease": "1989/07/25",
+    "manGenre": [
+      "ACCION",
+      "PSICOLOGICO",
+      "TRAGEDIA",
+      "DEMONIOS",
+      "GORE",
+      "SUPERNATURAL",
+      "FANTASIA"
+    ],
+    "manStatus": "EMISION",
+    "manIdPublisher": 4,
+    "manChapters": []
   },
   {
-    "name": "Death Note",
-    "img": "/src/test/manga/death-note/thumbnail.jpg",
-    "href": "/manga/death-note",
-    "desc": "Light Yagami es un excelente estudiante japonés que ha tenido una vida aburrida. Esto cambia radicalmente cuando encuentra tirado en el suelo un cuaderno conocido como Death Note (Libreta de la Muerte), un cuaderno perdido por Ryuk, un Shinigami (Dios de la muerte). Cualquier humano cuyo nombre esté escrito en el cuaderno morirá, y ahora Light ha decidido utilizar este poder para crear un mundo perfecto sin criminales. Pero cuando los criminales comienzan a morir de forma masiva, las autoridades envían al legendario detective L en busca del asesino. Con L pisándole los talones, Podrá mantener Light su noble propósito incluso arriesgando su vida."
+    "manName": "Death Note",
+    "manThumbnail": "/src/assets/manga/death-note/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/death-note/banner.jpg",
+    "manSynopsis": "Un shinigami, como dios de la muerte, puede matar a cualquier persona, siempre que vea la cara de su víctima y escriba su nombre en un cuaderno llamado Death Note. Un día, Ryuk, aburrido por el estilo de vida shinigami e interesado en ver cómo un humano usaría un Death Note, deja caer uno en el reino humano. Light Yagami, estudiante de secundaria y prodigio, se topa con el Death Note y, dado que deplora el estado del mundo, prueba el cuaderno mortal escribiendo el nombre de un criminal. Cuando el criminal muere inmediatamente después de su experimento con la Death Note, Light se sorprende y reconoce rápidamente cuán devastador podría ser el poder que ha caído en sus manos. Con esta capacidad divina, Light decide extinguir a todos los criminales para construir un mundo nuevo donde el crimen no exista y la gente lo adore como un dios. La policía, sin embargo, descubre rápidamente que un asesino en serie está apuntando a criminales y, en consecuencia, trata de detener al culpable. Para hacer esto, los investigadores japoneses cuentan con la ayuda del mejor detective del mundo: un hombre joven y excéntrico conocido solo por el nombre de L.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2003/12/1",
+    "manGenre": [
+      "ACCION",
+      "DRAMA",
+      "SUPERNATURAL",
+      "MISTERIO",
+      "PSICOLOGICO",
+      "CRIMEN",
+      "POLICIACO"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 5,
+    "manChapters": []
   },
   {
-    "name": "Dodoro",
-    "img": "/src/test/manga/dororo/thumbnail.jpg",
-    "href": "/manga/dororo",
-    "desc": "Daigo Kagemitsu es un temible samurái que entregó su futuro hijo a demonios, a cambio de ver cumplido su sueño de conquistar el país. Al cabo del tiempo, nació un niño deforme, al que faltaban cuarenta y ocho partes de su cuerpo. Su ambicioso padre lo arrojó al río, pero el pequeño logró sobrevivir y, con el tiempo, convertirse en un diestro espadachín llamado Hyakkimaru, «pequeño monstruo». Años después, con la ayuda del joven y avispado Dororo, quien afirma ser el mejor ladrón de Japón, Hyakkimaru emprenderá un viaje a lo largo del cual se enfrentará a los demonios para recuperar las partes de su cuerpo."
+    "manName": "Dororo",
+    "manThumbnail": "/src/assets/manga/dororo/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/dororo/banner.jpg",
+    "manSynopsis": "Daigo Kagemitsu, quien trabaja para un general samurai en el Período Sengoku (guerras feudales), promete ofrecer partes del cuerpo de su bebé no nacido a 48 demonios a cambio del completo dominio del país. Cuando el niño nace, Daigo lo deja en un río, esperando que el chico muera. Un amable sabio, sin embargo, lo encuentra y adopta. El sabio equipa a su pobre hijo con prótesis. El tiempo pasa y el bebé crece en un niño que hace llamarse Hyakkimaru. Cada vez que Hyakkimaru elimina a un demonio, recupera una de las partes de su cuerpo. Hyakkimaru rescata a un niño ladrón llamado Dororo de un grupo de hombres a los cuales el joven intentó robar. Juntos viajan a través del país en busca de los demonios que poseen las partes de Hyakkimaru. A través de sus viajes, se enfrentarán a una serie de monstruos y fantasmas.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2001/11/30",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "HORROR",
+      "HISTORIA",
+      "SUPERNATURAL",
+      "TRAGEDIA"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 6,
+    "manChapters": []
   },
   {
-    "name": "Fullmetal Alchemist",
-    "img": "/src/test/manga/fullmetal-alchemist/thumbnail.jpg",
-    "href": "/manga/fullmetal-alchemist",
-    "desc": "Tras perder a su madre, Alphonse y Edward Elric tratan de revivirla usando la ciencia prohibida de la alquimia humana. Sin embargo, la alquimia opera bajo la teoría del cambio equivalente y romper el tabú de la alquimia humana acarrea un alto precio. Ed pierde una de sus piernas y Al su cuerpo. Ed logra sellar el alma de Al dentro de una gran armadura, a costa de su brazo. Años después, Ed (ahora con dos extremidades mecánicas) y Al (aún atrapado en la armadura) dejan su casa de la niñez, cada uno preocupado por la felicidad del otro. Ed, quien tuvo un talento y habilidad natural para la alquimia, se convierte en un alquimista con certificado nacional y pronto es conocido en todas partes como el ?Alquimista Fullmetal?. El verdadero objetivo de ambos hermanos es buscar cualquier información sobre la legendaria Piedra Filosofal, con la esperanza de que ésta les permita recobrar sus cuerpos. Todas sus esperanzas descansan en la mítica piedra, que incluso puede no existir."
+    "manName": "Fullmetal Alchemist",
+    "manThumbnail": "/src/assets/manga/fullmetal-alchemist/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/fullmetal-alchemist/banner.jpg",
+    "manSynopsis": "La historia se centra en dos hermanos, Edward Elric y Alphonse Elric que rompieron el mayor tabú de la alquimia, la trasmutación humana al tratar de revivir a su fallecida madre; en consecuencia Edward pierde su pierna izquierda y Alphonse pierde todo su cuerpo, Edward para salvar a su hermano sella su alma en una gran armadura de hierro a cambio de su brazo derecho; ahora los dos con un nuevo objetivo buscan desesperadamente la piedra filosofal para poder regresar sus cuerpos a la normalidad...",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2001/07/12",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "COMEDIA",
+      "DRAMA",
+      "SUPERNATURAL",
+      "MAGIA"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Hajime No Ippo",
-    "img": "/src/test/manga/hajime-no-ippo/thumbnail.jpg",
-    "href": "/manga/hajime-no-ippo",
-    "desc": "Makunouchi Ippo es un chico honrado y humilde, al que le gusta mucho ayudarle con sus deberes a su madre. Hasta el momento, no tenía ninguna meta u objetivo claro en la vida, pero mientras un día estaba siendo molestado por unos pandilleros, se encuentra con un campeón nacional de boxeo japonés, Mamoru Takamura, quien lo defiende de los abusones y lo regaña por lo patético que se ve al no defenderse. A partir de este punto Takamura le enseña el arte del boxeo profesional e Ippo se ve inspirado tras ello. La historia dará lugar a un nuevo campeón sin lugar a dudas."
+    "manName": "Hajime No Ippo",
+    "manThumbnail": "/src/assets/manga/hajime-no-ippo/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/hajime-no-ippo/banner.jpg",
+    "manSynopsis": "Makunouchi Ippo es un chico muy reservado y muy tímido de 17 años que trabaja con su madre en un negocio familiar de botespara pesca llamado ' tienda de pesca makunouchi ' Debido a ello él nunca tiene tiempo libre para dedicarse a los deportes o hacer amigos. Un día, mientras caminaba cerca de un puente camino a casa, unos abusones de su colegio (Masahiko Umezawa es líder del grupo) le comenzaron a propinar golpes por su particular olor a lombrices, pero es salvado por un famoso boxeador llamado Mamoru Takamura, que después de ayudarlo decide llevarlo al gimnasio donde entrena mientras recupera la consciencia. Después de eso, decide animarlo un poco haciendo que de golpes a un costal de arena. Al ver que Ippo tiene talento decide prestarle unos vídeos de los mejores KO de Mike Tyson. Cuando Ippo ve estos vídeos desea ser un boxeador profesional como Takamura con el objetivo de resurgir o renacer como lo hizo Tyson y desea saber 'qué se siente al ser fuerte'.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "1989/09/27",
+    "manGenre": [
+      "ACCION",
+      "COMEDIA",
+      "DRAMA",
+      "DEPORTE",
+      "FANTASIA",
+      "ARTES_MARCIALES"
+    ],
+    "manStatus": "EMISION",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Hitoribocchi no oo Seikatsu",
-    "img": "/src/test/manga/hitoribocchi-no-oo-seikatsu/thumbnail.jpg",
-    "href": "/manga/hitoribocchi-no-oo-seikatsu",
-    "desc": "Hitori Bocchi es una joven que sufre de Taijin kyofusho (una variante de fobia social), lo que le impide hablarle a otras personas. Al entrar a la escuela secundaria, su única amiga le dijo que no podrían seguir siendo amigas hasta que Bocchi consiguiera hacerse amiga de todos sus nuevos compañeros de clase."
+    "manName": "Hitoribocchi no oo Seikatsu",
+    "manThumbnail": "/src/assets/manga/hitoribocchi-no-oo-seikatsu/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/hitoribocchi-no-oo-seikatsu/banner.jpg",
+    "manSynopsis": "Hitori Bocchi sufre de ansiedad social extrema, ella no es buena para hablar con la gente, toma medidas muy extremas, es sorprendentemente hábil para evitar a las personas, le dan calambres cuando se esfuerza demasiado, se siente llena de sí misma cuando está sola, vomita cuando se expone a la tensión extrema y, a menudo viene con planes. Ahora ella está entrando en la escuela media y su único amigo, Yawara Kai, asiste a una escuela diferente. Esto deja a Bocchi sola, rodeada de nuevos compañeros con los que debe hacer amigos antes de que Kai vuelva a hablar con ella de nuevo.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2013/09/27",
+    "manGenre": [
+      "COMEDIA",
+      "RECUENTOS_DE_LA_VIDA",
+      "VIDA_ESCOLAR"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Made in Abyss",
-    "img": "/src/test/manga/made-in-abyss/thumbnail.jpg",
-    "href": "/manga/made-in-abyss",
-    "desc": "En esta obra, un enorme sistema de cuevas llamado el “Abismo” es el único lugar inexplorado del mundo. Extrañas y poderosas criaturas residen en sus profundidades, junto a preciadas reliquias que los humanos son incapaces de producir. Los misterios del Abismo fascinan a los humanos y estos bajan a sus profundidades. Los aventureros que se adentran en él son conocidos como “Cave Raiders”. Una joven huérfana llamada Rico vive en el pueblo Osu en el filo del Abismo. Su sueño es convertirse en una “Cave Raider”, como su madre, y solventar los misterios del sistema de cuevas. Un día, Rico comienza a explorar las cuevas y descubre un robot con aspecto de un chico humano."
+    "manName": "Made in Abyss",
+    "manThumbnail": "/src/assets/manga/made-in-abyss/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/made-in-abyss/banner.jpg",
+    "manSynopsis": "El enorme sistema de cuevas, conocido como El Abismo, es el último lugar inexplorado en el mundo. Nadie sabe que tan profundo es este agujero titánico, habitado por extrañas y maravillosas criaturas lleno de misteriosas reliquias antiguas de propósito desconocido para la humanidad. Generaciones de valientes aventureros han sido atraídos a las profundidades crípticas del Abismo. Con el paso del tiempo, estos exploradores son conocidos como “Exploradores de las Profundidades”. En Oath, el pueblo al borde del Abismo, vive una pequeña niña huérfana llamada Riko, que sueña con convertirse en una gran exploradora como su madre y descubrir los misterios del Abismo. Un día explorando las obscuras profundidades se encuentra con un niño, que resulta ser un robot…",
+    "manDemography": "SEINEN",
+    "manRealease": "2012/10/01",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "PSICOLOGICO",
+      "SUPERNATURAL",
+      "CIENCIA_FICCION",
+      "FANTASIA",
+      "MAGIA",
+      "MISTERIO",
+      "SUPERVIVENCIA"
+    ],
+    "manStatus": "EMISION",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Mob Psycho 100",
-    "img": "/src/test/manga/mob-psicho-100/thumbnail.jpg",
-    "href": "/manga/mob-psicho-100",
-    "desc": "Cuenta la historia de “Mob”, un chico con poderes psíquicos que explota si su capacidad emocional alcanza el 100%. Recibió el apodo de “Mob” porque no destaca entre la gente, y trata de reprimir sus poderes para poder llevar una vida normal."
+    "manName": "Mob Psycho 100",
+    "manThumbnail": "/src/assets/manga/mob-psycho-100/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/mob-psycho-100/banner.jpg",
+    "manSynopsis": "Kageyama Shigeo (también conocido como 'Mob') Está en octavo grado con habilidades psíquicas. Puede doblar cucharas y levantar objetos con su mente desde una edad temprana, pero poco a poco comenzó a retener el uso de sus habilidades en público debido a la atención negativa siguió recibiendo. Ahora, lo único que quiere es llegar a ser amigos con una chica de su clase, Tsubomi. Con su 'mentor' psíquica (que no tiene poderes psíquicos), continúa su vida de cada día, tratando de darse cuenta de su propósito en la vida.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2012/04/18",
+    "manGenre": [
+      "ACCION",
+      "COMEDIA",
+      "RECUENTOS_DE_LA_VIDA",
+      "SUPERNATURAL",
+      "PSICOLOGICO",
+      "VIDA_ESCOLAR",
+      "AVENTURA"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Neon Genesis Evangelion",
-    "img": "/src/test/manga/neon-genesis-evangelion/thumbnail.jpg",
-    "href": "/manga/neon-genesis-evangelion",
-    "desc": "Según cuentan los libros de historia, el 13 de Septiembre del 2000, un enorme meteorito chocó contra la Antártida, causando el derretimiento del Polo Sur y la consecuente inundación y destrucción de todas las ciudades costeras. A este evento crucial se lo denomino Segundo Impacto -El primero fue el que destruyó a los dinosaurios-. La Tierra atravesó luego de ello un estado de crisis y catástrofes naturales y más de mitad de la población humana murió. Han pasado 15 años desde el Segundo Impacto cuando Tokyo-3, es atacada por un misterioso ser orgánico gigante, sin embargo esto no parece ser una sorpresa para un selecto grupo de gente de una organización de la ONU llamada NERV. Ellos se refieren al enemigo como 'Tercer Ángel' y han desarrollado unos enigmáticos robots gigantes llamados EVA con una particularidad, solo pueden ser piloteados por jóvenes de 14 años con caracteristicas no del todo claras."
+    "manName": "Neon Genesis Evangelion",
+    "manThumbnail": "/src/assets/manga/neon-genesis-evangelion/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/neon-genesis-evangelion/banner.jpg",
+    "manSynopsis": "En el año 2015 la humanidad intenta recuperarse del “Segundo impacto”, una catástrofe provocada por la caída de un meteorito en la Antártida años atrás. Tras sobrevivir al deshielo de los polos y a una inmediata sucesión de guerras sin fin, los seres humanos deben enfrentarse a un nuevo y mortal peligro. Unos misteriosos seres denominados Ángeles aparecen de improvisto llevando la destrucción por donde pasan. Para frenar esta amenaza, el científico Gendo Ikari ha desarrollado los Evangelion, gigantescos robots que se convierten en la última línea de defensa para la humanidad. Uno de los primeros pilotos escogidos recibe el nombre de “Tercer Elegido”. Shinji Ikari, hijo que Gendo abandonó, se verá obligado a sondear las profundidades de sus propios recursos internos y así encontrar el valor y la fuerza, no sólo para luchar… sino para sobrevivir o arriesgarse a perderlo todo.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "1994/12/26",
+    "manGenre": [
+      "ACCION",
+      "DRAMA",
+      "PSICOLOGICO",
+      "CIENCIA_FICCION",
+      "MECHA",
+      "SUPERNATURAL",
+      "THRILLER"
+    ],
+    "manStatus": "FINALIZADO",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Ousama Ranking",
-    "img": "/src/test/manga/ousama-ranking/thumbnail.jpg",
-    "href": "/manga/ousama-ranking",
-    "desc": "La historia se centra en Bojji, un débil y sordo príncipe que no puede sostener incluso una espada para niños. Como el primogénito, sostiene su enorme deseo de convertirse en el más poderoso rey del mundo. No obstante, las personas a su alrededor se refieren despectivamente a él y no tienen intención alguna de aceptarlo como rey. Bojji consigue su primer amigo, llamado Kage (sombra), literalmente una sombra en el suelo que de alguna manera puede entender a Bojji. De hecho, Kage es un sobreviviente del clan de asesinos “Kage” que fue eliminado, por lo que ya no es un asesino y sobrevive robando. La historia seguirá a Bojji haciendo su propio camino hacia su deseo."
+    "manName": "Ousama Ranking",
+    "manThumbnail": "/src/assets/manga/ousama-ranking/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/ousama-ranking/banner.jpg",
+    "manSynopsis": "La historia se centra en Bojji, un príncipe sordo e impotente que ni siquiera puede empuñar la espada de un niño. Como hijo primogénito, se esfuerza mucho y sueña con convertirse en el rey más grande del mundo.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2017/11/06",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "COMEDIA",
+      "DRAMA",
+      "RECUENTOS_DE_LA_VIDA"
+    ],
+    "manStatus": "EMISION",
+    "manIdPublisher": 1,
+    "manChapters": []
   },
   {
-    "name": "Spy x Famiy",
-    "img": "/src/test/manga/spy-x-family/thumbnail.jpg",
-    "href": "/manga/spy-x-family",
-    "desc": "Todo el mundo tiene una parte de sí mismos que no puede mostrar a los demás. En una era en la que las naciones de todo el mundo se encuentran involucradas en una feroz guerra de información a puerta cerrada, Ostania y Westalis llevan décadas en guerra fría. La División de Inteligencia de Westalis (WISE) envía a su mejor espía, 'Twilight', en una misión ultrasecreta para vigilar los movimientos de Donovan Desmond, quien dirige el Partido Nacional por la Unidad de Ostania, responsable de bombardear los esfuerzos de paz entre ambos países. La misión tiene por nombre 'Operación Strix'. La idea es 'crear una familia en una semana para infiltrarse en las reuniones sociales organizadas por la escuela de élite a la que asiste el hijo de Desmond'. Twilight adopta la identidad del psiquiatra Loid Forger y comienza a buscar miembros para su familia, pero Anya, la hija que adopta, resulta tener la capacidad para leer las mentes a los demás, mientras que su esposa, Yor, es una asesina. Todos mantendrán estos en secreto, pero comenzarán una vida juntos en la que deberán ocultarse sus identidades unos a otros. La paz del mundo está ahora en manos de esta nueva familia mientras se embarcan en una aventura repleta de sorpresas."
+    "manName": "Spy x Famiy",
+    "manThumbnail": "/src/assets/manga/spy-x-famiy/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/spy-x-famiy/banner.jpg",
+    "manSynopsis": "El espía profesional conocido como <Twilight> ha realizado misiones en cubierto durante muchos años, con la finalidad de conseguir un mundo mejor. Pero un día, él recibe un particular y difícil encargo por parte de sus superiores. Para esta misión, ¡¿tiene que formar una familia temporal y comenzar una nueva vida?! Una comedia de acción y espías sobre una familia como ninguna otra.",
+    "manDemography": "SHOUNEN",
+    "manRealease": "2019/03/25",
+    "manGenre": [
+      "ACCION",
+      "FAMILIA",
+      "ROMANCE",
+      "DRAMA",
+      "RECUENTOS_DE_LA_VIDA"
+    ],
+    "manStatus": "EMISION",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Vagabond",
-    "img": "/src/test/manga/vagabond/thumbnail.jpg",
-    "href": "/manga/vagabond",
-    "desc": "Tras la muerte de su sobrino en un accidente aéreo, el doble de acción Cha Dal-geon decide investigar lo ocurrido con la ayuda de la agente encubierta Go Hae-ri. Ve todo lo que quieras. Este thriller de espionaje vuelve a reunir a Lee Seung-gi y Bae Suzy, que ya compartieron pantalla en 'Gu Family Book'"
+    "manName": "Vagabond",
+    "manThumbnail": "/src/assets/manga/vagabond/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/vagabond/banner.jpg",
+    "manSynopsis": "Vagabond nos relata la historia de Shinme Takezo, un joven salvaje que no duda en involucrarse en combates a muerte para forjarse una reputación y que está destinado a convertirse en el legendario Santo de la Espada Miyamoto Musashi. Este es el viaje de un joven vagabundo con una sola meta 'ser invencible bajo el sol' y para esto desafiará a los más grandes artistas marciales de su época lo cual hará crecer como guerrero y como persona.",
+    "manDemography": "SEINEN",
+    "manRealease": "1999/03/23",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "DRAMA",
+      "HISTORIA",
+      "SAMURAI"
+    ],
+    "manStatus": "HIATUS",
+    "manIdPublisher": 2,
+    "manChapters": []
   },
   {
-    "name": "Vinland Saga",
-    "img": "/src/test/manga/vinland-saga/thumbnail.jpg",
-    "href": "/manga/vinland-saga",
-    "desc": "Thorfinn, hijo de uno de los guerreros más grandes de los vikingos, se encuentra entre los mejores luchadores de la alegre banda de mercenarios dirigida por el astuto Askeladd. Sin embargo, Thorfinn no es parte del grupo por el saqueo que implica, en cambio, por haber causado una gran tragedia a su familia, el chico ha prometido matar a Askeladd en un duelo justo. Thorfinn pasa su niñez con la tripulación mercenaria, perfeccionando sus habilidades en el campo de batalla entre los daneses, donde matar es solo otro placer de la vida. Un día, cuando Askeladd recibe noticias de que el príncipe danés Canute ha sido tomado como rehén, trama un ambicioso plan: uno que decidirá al próximo rey de Inglaterra y alterará drásticamente las vidas de Thorfinn, Canute y la suya. Situada en el siglo XI en Europa, Vinland Saga cuenta una sangrienta epopeya en una era donde la violencia, la locura y la injusticia son ineludibles, proporcionando un paraíso para el infierno enloquecido por las batallas y el resto de quienes viven en él."
+    "manName": "Vinland Saga",
+    "manThumbnail": "/src/assets/manga/vinland-saga/thumbnail.jpg",
+    "manBanner": "/src/assets/manga/vinland-saga/banner.jpg",
+    "manSynopsis": "En una fría región de Islandia, Thorfinn, hijo de Thors, conocido como el Troll de Jom, vive junto a su padre, su madre y su hermana mayor. Thorfinn sueña con ser un gran guerrero, pero descubrirá lo que ello supone cuando su padre sea llamado a filas por el rey de Dinamarca para participar en la conquista de Inglaterra y este sea asesinado por el ambicioso mercenario Askeladd. Desde ese momento, Thorfinn vivirá solo para la venganza, pero para ganarse el derecho a retar al asesino de su padre a un duelo a muerte se verá obligado a pasar a formar parte de la misma tropa de Askeladd y realizar hazañas en su nombre.",
+    "manDemography": "SEINEN",
+    "manRealease": "2005/07/13",
+    "manGenre": [
+      "ACCION",
+      "AVENTURA",
+      "DRAMA",
+      "HISTORIA",
+      "GORE",
+      "PSICOLOGICO"
+    ],
+    "manStatus": "FINISH",
+    "manIdPublisher": 2,
+    "manChapters": []
   }
 ]
