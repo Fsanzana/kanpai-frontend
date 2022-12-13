@@ -8,8 +8,6 @@ import { ListItemIcon, Paper } from "@material-ui/core";
 import { ListItem, ToggleButton, Tooltip } from "@mui/material";
 import { IconButton } from "@mui/material";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 export default function SlideItem(props) {
   const [selected, setSelected] = React.useState(false);
   return (

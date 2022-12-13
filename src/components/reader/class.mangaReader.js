@@ -19,7 +19,9 @@ class MangaReader {
 
   getUrlData() {
     //change the i starting point to get only the source
-    this.src = "/src/test/manga/" + window.location.href.split("/")[7] + "/";
+    this.src = "/src/assets/manga/" + window.location.href.split("/")[7] + "/";
+
+    console.log(window.location.href);
 
     this.currentChapter = parseInt(
       window.location.href.split("chapter-")[1].split("/")[0]
@@ -42,7 +44,7 @@ class MangaReader {
   updateUrl() {
     var aux =
       "mangareader.html#" +
-      this.src.split("/src/test/manga")[1] +
+      this.src.split("/src/assets/manga")[1] +
       "chapter-" +
       this.currentChapter +
       "/page-" +

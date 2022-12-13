@@ -1,9 +1,7 @@
 import * as React from "react";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 
 import SlideItem from "/src/components/editor/slideItem.jsx";
-import { Box } from "@mui/material";
 
 const slides = ["1", "2", "3", "4", "5"];
 

@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Fullmetal Alchemist",
+    "desc": "Tras perder a su madre, Alphonse y Edward Elric tratan de revivirla usando la ciencia prohibida de la alquimia humana. Sin embargo, la alquimia opera bajo la teoría del cambio equivalente y romper el tabú de la alquimia humana acarrea un alto precio. Ed pierde una de sus piernas y Al su cuerpo. Ed logra sellar el alma de Al dentro de una gran armadura, a costa de su brazo. Años después, Ed (ahora con dos extremidades mecánicas) y Al (aún atrapado en la armadura) dejan su casa de la niñez, cada uno preocupado por la felicidad del otro. Ed, quien tuvo un talento y habilidad natural para la alquimia, se convierte en un alquimista con certificado nacional y pronto es conocido en todas partes como el ?Alquimista Fullmetal?. El verdadero objetivo de ambos hermanos es buscar cualquier información sobre la legendaria Piedra Filosofal, con la esperanza de que ésta les permita recobrar sus cuerpos. Todas sus esperanzas descansan en la mítica piedra, que incluso puede no existir.",
+    "chapters": [],
+    "img": "/src/test/manga/fullmetal-alchemist/thumbnail.jpg",
+    "banner": "/src/test/manga/fullmetal-alchemist/banner.jpg",
+    "state": "Finalizado",
+    "publication": "12/07/2001",
+    "tags": ["Shounen"]
+  }
+]

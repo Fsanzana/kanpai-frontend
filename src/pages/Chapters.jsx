@@ -6,9 +6,9 @@ import ChapterMenu from "../components/menu/chapterMenu";
 import DescCard from "../components/card/descCard";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Box from "@mui/material/Box";
-import { Container } from "@material-ui/core";
+import { Container, Paper } from "@material-ui/core";
 function Chapters(props) {
-  const file = "/src/test" + props.name + "/chapters.json";
+  const file = "/src/assets" + props.name + "/chapters.json";
   const [data, setData] = useState([]);
   const fetchData = () => {
     fetch(file)
@@ -25,7 +25,45 @@ function Chapters(props) {
   }, []);
   return (
     <div className="Chapters">
-      <Box component="main" sx={{ flexGrow: 1, p: 0, marginTop: "2%" }}>
+      <Paper
+        elevation={3}
+        style={{
+          position: "absolute",
+          width: "100%",
+          backgroundColor: "#712222",
+          zIndex: "0",
+          opacity: "0.9",
+          top: "0",
+          height: "50vh",
+        }}
+        square
+      >
+        {data?.map((item, index) => (
+          <img
+            src={item.banner}
+            style={{
+              userSelect: "none",
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+              left: "0",
+              right: "0",
+              pointerEvents: "none",
+            }}
+          />
+        ))}
+      </Paper>
+
+      <Box
+        component="main"
+        sx={{
+          position: "relative",
+          zIndex: "1",
+          flexGrow: 1,
+          p: 0,
+          marginTop: "2%",
+        }}
+      >
         {data?.map((item, index) => (
           <Grid2 container justifyContent={"space-around"} key={index}>
             <Grid2 xs="auto">
