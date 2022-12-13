@@ -26,7 +26,7 @@ const theme = createTheme({
     fontWeightMedium: 600,
   },
 });
-export default function DescCard() {
+export default function DescCard(props) {
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -45,15 +45,15 @@ export default function DescCard() {
               justifyContent: "space-evenly",
             }}
           >
-            {mangaList.map((data, key) => (
-              <MangaCard
-                key={key}
-                name={data.name}
-                thumbnail={data.img}
-                link={data.href}
-                desc={data.desc}
-              />
-            ))}
+             {props.found.map((manga, key) => (
+            <MangaCard
+              key={key}
+              name={manga.manName}
+              thumbnail={manga.manThumbnail}
+              link={"manga/" + manga.manName.toLowerCase().replaceAll(" ", "-")}
+              desc={manga.manSynopsis}
+            />
+          ))}
           </CardContent>
         </Grid2>
       </Card>

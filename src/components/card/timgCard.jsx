@@ -45,32 +45,32 @@ export default function TimgCard(props) {
 
   const handleDemoColor = (name) => {
     switch (name) {
-      case "Shounen":
+      case "SHOUNEN":
         return "primary";
 
-      case "Seinen":
+      case "SEINEN":
         return "info";
 
-      case "Shoujo":
+      case "SHOUJO":
         return "success";
 
-      case "Josei":
+      case "JOSEI":
         return "secondary";
 
-      case "Kodomo":
+      case "KODOMO":
         return "warning";
     }
   };
 
   const handleStateColor = (name) => {
     switch (name) {
-      case "Finish":
+      case "FINALIZADO":
         return "success";
 
-      case "Emission":
+      case "EMISION":
         return "secondary";
 
-      case "Hiatus":
+      case "HIATUS":
         return "warning";
     }
   };
