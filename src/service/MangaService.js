@@ -8,6 +8,12 @@ export const getMangabyName = (name) => {
         return data; 
   })
 }
+export const getAllMangasByName = (name) =>{
+  return useQuery(["manga",name],async()=>{
+    const {data} = await HttpCommon.get("search-n/"+name)
+    return data;
+  })
+}
 
 // export const useGetMangaById = (id) => {
 //     return useQuery(["manga", id], async () => {
