@@ -14,6 +14,7 @@ function NotFound() {
             justifyContent: "center",
             margin: "auto",
             position: "absolute",
+            marginBottom: "",
             bottom: "0",
             left: "0",
             right: "0",

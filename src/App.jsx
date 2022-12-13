@@ -7,7 +7,7 @@ import Editor from "./pages/Editor.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import NotFound from "./pages/404";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from "react-query/devtools";
 const queryClient = new QueryClient();
 
 function App() {
@@ -15,7 +15,9 @@ function App() {
   if (window.location.pathname == "/") {
     component = <Home />;
   } else if (window.location.pathname.includes("/manga")) {
-    component = <Chapters name={window.location.pathname.replace("/manga/","")} />;
+    component = (
+      <Chapters name={window.location.pathname.replace("/manga/", "")} />
+    );
   } else if (window.location.pathname.includes("/search")) {
     component = <Search />;
   } else if (window.location.pathname.includes("/publisher-editor")) {
@@ -37,7 +39,6 @@ function App() {
         </div>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-
     );
 }
 

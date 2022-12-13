@@ -17,7 +17,6 @@ const StyledInputRoot = styled("div")(
   box-shadow: 0px 2px 2px black;
   display: flex;
   align-items: center;
-  justify-content: center;
   width : auto;
 
 
@@ -51,8 +50,6 @@ const StyledInputElement = styled("input")(
 const IconButton = styled(ButtonUnstyled)(
   ({ theme }) => `
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   border: none;
   background: inherit;
   cursor: pointer;
@@ -63,9 +60,11 @@ const IconButton = styled(ButtonUnstyled)(
 const InputAdornment = styled("div")`
   margin: 8px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
 `;
+
+const search = (searchValue) => {
+  console.log(searchValue);
+};
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   const { slots, ...other } = props;
@@ -104,7 +103,7 @@ export default function InputAdornments() {
         placeholder="Buscar Manga..."
         endAdornment={
           <InputAdornment>
-            <SearchIcon />
+            <SearchIcon onClick={() => search(this)} />
           </InputAdornment>
         }
       />

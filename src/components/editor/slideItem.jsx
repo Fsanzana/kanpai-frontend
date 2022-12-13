@@ -28,6 +28,7 @@ export default function SlideItem(props) {
           edge="end"
           aria-label="move-forward"
           sx={{ margin: "0.2rem" }}
+          onClick={() => props.goUp(props.name)}
         >
           <Tooltip title="Poner Antes">
             <ArrowDropUpRoundedIcon />
@@ -38,6 +39,7 @@ export default function SlideItem(props) {
           edge="end"
           aria-label="move-backwards"
           sx={{ margin: "0.2rem" }}
+          onClick={() => props.goDown(props.name)}
         >
           <Tooltip title="Poner Después">
             <ArrowDropDownRoundedIcon />

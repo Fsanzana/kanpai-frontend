@@ -37,13 +37,11 @@ export default function DescCard() {
         }}
       >
         <CardContent
-          container
           component="main"
           sx={{
             flexGrow: 1,
             p: 2.5,
           }}
-          justifyContent="center"
         >
           <Input />
         </CardContent>

@@ -7,7 +7,7 @@ const Footer = () => (
     sx={{
       display: "flex",
       position: "relative",
-      marginTop: "5%",
+      marginTop: "2rem",
       bottom: "0",
       right: "0",
       left: "0",
