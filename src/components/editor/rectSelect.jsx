@@ -43,7 +43,7 @@ export default class ReactRectangleSelection extends React.Component {
           }}
         >
           <img
-            src="/src/assets/boxi.png"
+            src="/src/assets/manga/berserk/1/10.jpg"
             style={{
               userSelect: "none",
               resizeMode: "contain",

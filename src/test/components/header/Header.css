@@ -1,0 +1,23 @@
+nav{
+    height: 50px;
+    border: 1px solid #202020;
+    background-color: #202020;
+}
+.div-header{
+    width: 00%;
+    height: 100%;
+    margin: 1 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.div-header{
+    height: 40px;
+    width: 40px;
+    padding: 0 20px;
+}
+.div-svg{
+    height: 30px;
+    width: 30px;
+}
