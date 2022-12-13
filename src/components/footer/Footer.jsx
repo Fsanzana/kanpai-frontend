@@ -1,7 +1,9 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Grid, Link } from "@material-ui/core";
 import { Box, Button } from "@mui/material";
-
+const handleClick = () => {
+  window.location.pathname = "/publisher-editor"
+}
 const Footer = () => (
   <Box
     sx={{
@@ -18,7 +20,7 @@ const Footer = () => (
         <Typography variant="caption">
           © 2022 Kanpai Company. Ningun derecho reservado.
         </Typography>
-        <Button variant="contained" color="secondary" sx={{ margin: "1rem" }}>
+        <Button variant="contained" color="secondary" sx={{ margin: "1rem" }} onClick={handleClick}>
           Publica con Nosotros
         </Button>
       </Toolbar>
