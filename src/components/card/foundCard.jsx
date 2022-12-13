@@ -6,8 +6,6 @@ import MangaCard from "/src/components/card/MangaCard.jsx";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import mangaList from "/src/data/mangaList.json";
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -45,15 +43,17 @@ export default function DescCard(props) {
               justifyContent: "space-evenly",
             }}
           >
-             {props.found.map((manga, key) => (
-            <MangaCard
-              key={key}
-              name={manga.manName}
-              thumbnail={manga.manThumbnail}
-              link={"manga/" + manga.manName.toLowerCase().replaceAll(" ", "-")}
-              desc={manga.manSynopsis}
-            />
-          ))}
+            {props.found.map((manga, key) => (
+              <MangaCard
+                key={key}
+                name={manga.manName}
+                thumbnail={manga.manThumbnail}
+                link={
+                  "manga/" + manga.manName.toLowerCase().replaceAll(" ", "-")
+                }
+                desc={manga.manSynopsis}
+              />
+            ))}
           </CardContent>
         </Grid2>
       </Card>

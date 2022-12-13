@@ -28,23 +28,39 @@ const theme = createTheme({
 });
 
 const tags = [
-  "Aventura",
-  "Comedia",
-  "Drama",
-  "Supernatural",
-  "Magia",
-  "Recuentos de la vida",
-  "Guerra",
-  "Romance",
-  "Vida Escolar",
-  "Gore",
-  "Psicologico",
-  "Tragedia",
+  "ACCION",
+  "ARTES MARCIALES",
+  "AVENTURA",
+  "CIENCIA FICCION",
+  "COMEDIA",
+  "CRIMEN",
+  "DEMONIOS",
+  "DEPORTE",
+  "DRAMA",
+  "FAMILIA",
+  "FANTASIA",
+  "GORE",
+  "GUERRA",
+  "HISTORIA",
+  "HORROR",
+  "MAGIA",
+  "MECHA",
+  "MISTERIO",
+  "POLICIACO",
+  "PSICOLOGICO",
+  "RECUENTOS DE LA VIDA",
+  "ROMANCE",
+  "SAMURAI",
+  "SUPERNATURAL",
+  "SUPERVIVENCIA",
+  "THRILLER",
+  "TRAGEDIA",
+  "VIDA ESCOLAR",
 ];
 
 export default function DescCard() {
   const handleTagClick = (name) => {
-    var aux = "/search-g/" + name.replaceAll(" ", "_");
+    var aux = "/search-g/" + name.replaceAll(" ", "_").toUpperCase();
     location.assign(aux);
   };
 

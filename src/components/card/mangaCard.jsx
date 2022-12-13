@@ -26,9 +26,7 @@ const useStyles = makeStyles(() => ({
     "&:after": {
       content: '""',
       display: "block",
-      //PLS HELP IT'S NOT TAKING THIS INTO ACCOUNT
       pointerEvents: "none !important",
-      //PLS HELP IT'S NOT TAKING THIS INTO ACCOUNT
       position: "absolute",
       width: "100%",
       height: "64%",
@@ -46,13 +44,17 @@ const useStyles = makeStyles(() => ({
 }));
 
 export const MangaCard = React.memo(function GalaxyCard(props) {
+  const handleClick = () => {
+    window.location.pathname = props.link;
+  };
+
   const mediaStyles = useCoverCardMediaStyles({ bgPosition: "top" });
   const styles = useStyles();
   return (
     <Card className={styles.card}>
       <Tooltip title={props.desc} sx={{ maxWidth: 245 }}>
         <CardActionArea style={{ height: "100%" }}>
-          <a href={props.link}>
+          <a onClick={handleClick}>
             <CardContent>
               <CardMedia
                 classes={mediaStyles}

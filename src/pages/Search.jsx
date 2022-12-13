@@ -5,13 +5,30 @@ import FoundCard from "/src/components/card/foundCard.jsx";
 import InputCard from "/src/components/card/inputCard.jsx";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Box from "@mui/material/Box";
-import { getAllMangasByName } from "../service/MangaService";
+import {
+  getAllMangasByName,
+  getAllMangasByDem,
+  getAllMangasByGenre,
+} from "../service/MangaService";
 import Load from "../components/loading/load";
 import NotFound from "./404";
 
 function Search() {
-  
-  const { data, isLoading, error } = getAllMangasByName(window.location.href.split("/")[4]);
+  var searchFunc;
+
+  switch (window.location.href.split("/")[3]) {
+    case "search-g":
+      searchFunc = getAllMangasByGenre(window.location.href.split("/")[4]);
+
+      break;
+    case "search-d":
+      searchFunc = getAllMangasByDem(window.location.href.split("/")[4]);
+      break;
+    default:
+      searchFunc = getAllMangasByName(window.location.href.split("/")[4]);
+  }
+
+  const { data, isLoading, error } = searchFunc;
 
   if (isLoading) {
     return <Load />;
@@ -31,12 +48,10 @@ function Search() {
             <SearchCard />
           </Grid2>
           <Grid2 xs="auto" sx={{ width: "70%" }}>
-            <FoundCard  found={data}/>
+            <FoundCard found={data} />
           </Grid2>
         </Grid2>
       </Box>
-      {JSON.stringify(data)}
-      
     </div>
   );
 }

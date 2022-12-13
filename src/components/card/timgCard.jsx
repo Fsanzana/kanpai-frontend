@@ -34,13 +34,13 @@ export default function TimgCard(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleTagClick = (name) => {
-    // PONER AQUI REDIRECT A BUSQUEDA POR GENERO
-    console.log("to " + name);
+    var aux = "/search-g/" + name.replaceAll(" ", "_").toUpperCase();
+    location.assign(aux);
   };
 
   const handleDemoClick = (name) => {
-    // PONER AQUI REDIRECT A BUSQUEDA POR DEMOGRAFÍA
-    console.log("to " + name);
+    var aux = "/search-d/" + name.replaceAll(" ", "_").toUpperCase();
+    location.assign(aux);
   };
 
   const handleDemoColor = (name) => {

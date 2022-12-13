@@ -8,11 +8,12 @@ export default function Load() {
         flex: 1,
         height: "90vh",
 
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <CircularProgress color="secondary" size={40} thickness={40} />
+      <CircularProgress color="secondary" size={90} thickness={40} />
     </Box>
   );
 }

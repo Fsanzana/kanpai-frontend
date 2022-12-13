@@ -11,7 +11,9 @@ export default function DemSelect() {
 
   const handleChange = (event) => {
     setDem(event.target.value);
-    location.assign("/search-d/" + event.target.value.replaceAll(" ", "_"));
+    location.assign(
+      "/search-d/" + event.target.value.replaceAll(" ", "_").toUpperCase()
+    );
   };
 
   const names = ["Seinen", "Shoujo", "Shounen", "Josei", "Kodomo"];
@@ -19,7 +21,7 @@ export default function DemSelect() {
   return (
     <Box sx={{ minWidth: 130 }}>
       <FormControl fullWidth height="21rem">
-        <InputLabel id="demo-simple-select-label">Demgrafía</InputLabel>
+        <InputLabel id="demo-simple-select-label">Demografía</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
