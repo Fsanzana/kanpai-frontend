@@ -2,20 +2,47 @@ import * as React from "react";
 import List from "@mui/material/List";
 
 import SlideItem from "/src/components/editor/slideItem.jsx";
-
-const slides = ["1", "2", "3", "4", "5"];
-
-//reorder shit do function ñe
-const goUp = (name) => {
-  console.log(slides.indexOf(name));
-  const aux = slides.indexOf(name);
-};
-
-const goDown = (name) => {
-  console.log(name);
-};
+import { Button } from "@mui/material";
 
 export default function AlignItemsList() {
+  const [slides, setSlides] = React.useState([]);
+
+  function goUp(name) {
+    console.log(name);
+  }
+
+  function goDown(name) {
+    console.log(slides.indexOf(name));
+  }
+
+  function deleteSlide(name) {
+    setSlides(slides.filter((item) => item.name !== name));
+  }
+
+  function selectSlide(name) {
+    console.log(slides);
+    slides.sort;
+    console.log("slide " + name + " selected");
+  }
+
+  function pushSlide(name) {
+    //setSlides((prevState) => [...prevState, newSlide(name)]);
+    setSlides((prevState) => [...prevState, newSlide(name)]);
+  }
+
+  function newSlide(name) {
+    return (
+      <SlideItem
+        name={name}
+        key={SlideItem.key}
+        goUp={goUp}
+        goDown={goDown}
+        deleteSlide={deleteSlide}
+        selectSlide={selectSlide}
+      />
+    );
+  }
+
   return (
     <List
       sx={{
@@ -27,8 +54,9 @@ export default function AlignItemsList() {
         bgcolor: "background.paper",
       }}
     >
-      {slides.map((data, key) => (
-        <SlideItem name={data} key={key} goUp={goUp} goDown={goDown} />
+      <Button onClick={() => pushSlide(slides.length + 1)}>+</Button>
+      {slides.map(() => (
+        <>{slides}</>
       ))}
     </List>
   );

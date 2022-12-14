@@ -10,12 +10,23 @@ import { IconButton } from "@mui/material";
 
 export default function SlideItem(props) {
   const [selected, setSelected] = React.useState(false);
+
+  function handleSelection() {
+    if (selected) {
+      props.selectSlide(props.name);
+    }
+  }
+
   return (
     <Paper variant="outlined">
       <ListItem
         alignItems="flex-start"
         secondaryAction={
-          <IconButton edge="end" aria-label="delete">
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => props.deleteSlide(props.name)}
+          >
             <Tooltip title="Borrar Viñeta">
               <DeleteRoundedIcon />
             </Tooltip>
@@ -52,6 +63,7 @@ export default function SlideItem(props) {
             selected={selected}
             sx={{ borderRadius: "2rem" }}
             color="secondary"
+            onClick={handleSelection()}
             onChange={() => {
               setSelected(!selected);
             }}

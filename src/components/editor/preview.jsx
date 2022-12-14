@@ -78,11 +78,11 @@ export default function FullScreenDialog() {
 
         {/* PUT READER WITH CURRENT DATA HERE */}
         <List>
-          <ListItem button>
+          <ListItem>
             <ListItemText primary="Phone ringtone" secondary="Titania" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem>
             <ListItemText
               primary="Default notification ringtone"
               secondary="Tethys"

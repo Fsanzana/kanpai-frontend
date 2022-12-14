@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
+// import { getPublisherbyID } from "../../service/MangaService";
 
 const theme = createTheme({
   palette: {
