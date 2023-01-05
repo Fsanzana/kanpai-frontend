@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kanpai Manga Reader</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1"
+    />
+    <script type="text/javascript" src="class.MangaReader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.png" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap");
+
+      html {
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Comic Neue", cursive;
+        background-color: #303030;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      #zoomSlider {
+        display: none;
+        position: absolute;
+        margin-left: 10px;
+        margin-bottom: 4rem;
+        bottom: 0px;
+        border-radius: 2rem;
+
+        background-color: #b63333;
+
+        inline-size: auto;
+        padding: 1rem 0.2rem;
+        cursor: pointer;
+        opacity: 0;
+      }
+
+      #slider {
+        height: 8rem;
+      }
+
+      .slider {
+        color: #ffffff;
+        width: 1rem;
+        left: 1rem;
+        padding: 0.74rem;
+        -webkit-appearance: slider-vertical;
+        transition: opacity 0.2s;
+        cursor: pointer;
+      }
+
+      #prevButton {
+        position: absolute;
+        margin-left: 10px;
+        top: 50%;
+        left: 0px;
+
+        border-radius: 2rem;
+        background-color: #b63333;
+        border: none;
+        padding: 0.2rem 0.8rem;
+
+        background-image: url("/src/assets/arrow_left.png");
+        background-position: center;
+        background-size: contain;
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        cursor: pointer;
+      }
+
+      #nextButton {
+        position: absolute;
+        margin-right: 10px;
+        top: 50%;
+        right: 0px;
+
+        border-radius: 2rem;
+        background-color: #b63333;
+        border: none;
+        padding: 0.2rem 0.8rem;
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        background-image: url("/src/assets/arrow_right.png");
+        background-position: center;
+        background-size: contain;
+
+        cursor: pointer;
+      }
+
+      #overviewSwitch {
+        background-color: #b63333;
+      }
+
+      #overviewSwitch:hover {
+        background-color: #ffffff;
+      }
+
+      #overviewSwitch:active {
+        background-color: #cacaca;
+      }
+
+      #zoomSwitch {
+        background-color: #b63333;
+      }
+
+      #zoomSwitch:hover {
+        background-color: #ffffff;
+      }
+
+      #zoomSwitch:active {
+        background-color: #cacaca;
+      }
+
+      #prevButton:hover {
+        background-color: #ffffff;
+      }
+
+      #nextButton:hover {
+        background-color: #ffffff;
+      }
+
+      #prevButton:active {
+        background-color: #cacaca;
+      }
+
+      #nextButton:active {
+        background-color: #cacaca;
+      }
+
+      #pageTextField {
+        font-family: "Comic Neue", cursive;
+      }
+
+      #homeButton {
+        background-color: #b63333;
+      }
+
+      #homeButton:hover {
+        background-color: #ffffff;
+      }
+
+      #homeButton:active {
+        background-color: #cacaca;
+      }
+
+      #backButton {
+        font-family: "Comic Neue", cursive;
+        background-color: #b63333;
+      }
+
+      #backButton:hover {
+        background-color: #ffffff;
+      }
+
+      #backButton:active {
+        background-color: #cacaca;
+      }
+
+      #closeButton {
+        transform: scale(1);
+      }
+
+      #closeButton:hover {
+        transform: scale(1.5);
+      }
+
+      #closeButton:active {
+        transform: scale(1);
+      }
+
+      #prevChapter {
+        font-family: "Comic Neue", cursive;
+        background-color: #252525;
+      }
+
+      #prevChapter:hover {
+        background-color: #b63333;
+      }
+
+      #prevChapter:active {
+        background-color: #ffffff;
+      }
+
+      #nextChapter {
+        font-family: "Comic Neue", cursive;
+        background-color: #252525;
+      }
+
+      #nextChapter:hover {
+        background-color: #b63333;
+      }
+
+      #nextChapter:active {
+        background-color: #ffffff;
+      }
+
+      #chapterSelect {
+        background-color: #252525;
+      }
+
+      #chapterSelect:hover {
+        background-color: #b63333;
+      }
+
+      #chapterSelect:active {
+        background-color: #ffffff;
+      }
+    </style>
+  </head>
+
+  <script type="text/javascript"></script>
+
+  <body>
+    <div id="noMoreBoxDiv"></div>
+    <div
+      id="readerGui"
+      style="
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        opacity: 0.7;
+        transition: all 350ms ease-in-out 0ms;
+        transform-style: preserve-3d;
+      "
+    ></div>
+
+    <div id="mangaReader" scrolling="no" data-transition-duration="250"></div>
+    <script>
+      var reader = new MangaReader();
+
+      document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var charCode = evt.keyCode || evt.which;
+        var charStr = String.fromCharCode(charCode);
+        if (charCode === 37) {
+          reader.prevButtonFunc();
+        }
+        if (charCode === 39) {
+          reader.nextButtonFunc();
+        }
+      };
+
+      addEventListener("wheel", (event) => {
+        onwheel = (event) => {
+          reader.sliderFunc(event.deltaY * -0.002);
+        };
+      });
+    </script>
+  </body>
+</html>
